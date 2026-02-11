@@ -629,6 +629,99 @@
             background: #1558b0;
             transform: translateY(-2px);
         }
+
+
+        .modern-modal {
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: #1d3557;
+            color: white;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-modal {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .close-modal:hover {
+            background: #e63946;
+            transform: rotate(90deg);
+        }
+
+        .destination-image img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .google-route-btn {
+            display: block;
+            text-align: center;
+            background: #1a73e8;
+            color: white;
+            padding: 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .google-route-btn:hover {
+            background: #1558b0;
+        }
+
+        .mini-map-container {
+            margin: 15px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        #miniMap {
+            height: 250px;
+            width: 100%;
+        }
+
+        .google-route-btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 18px;
+            background: #1a73e8;
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1000;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        header.hide-header {
+            transform: translateY(-100%);
+        }
     </style>
 
 </head>
@@ -691,10 +784,10 @@
                     عرض جميع مراكز الخدمات
                 </button>
 
-                <!-- <button id="emergencyCall" class="btn btn-warning">
+                <button id="emergencyCall" class="btn btn-warning">
                     <i class="fas fa-phone"></i>
                     اتصال طوارئ
-                </button>-->
+                </button>
 
             </div>
 
@@ -762,7 +855,7 @@
                     <div class="service-details">
                         <div id="militaryList">
                             <!-- سيتم ملؤها بواسطة JavaScript -->
-                            <p>اضغط على "تحديد موقعي" لعرض أقرب مراكز الجيش</p>
+                            <p>اضغط على "تحديد موقعي" لعرض أقرب فرقة للدرك الوطني
                         </div>
                     </div>
                 </div>
@@ -780,7 +873,7 @@
                     <div class="service-details">
                         <div id="civilDefenseList">
                             <!-- سيتم ملؤها بواسطة JavaScript -->
-                            <p>اضغط على "تحديد موقعي" لعرض أقرب مراكز الدفاع المدني</p>
+                            <p>اضغط على "تحديد موقعي" لعرض أقرب وحدات الحماية المدنية
                         </div>
                     </div>
                 </div>
@@ -978,25 +1071,18 @@
     </div>
 
     <!-- Route Modal -->
-    <div id="routeModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="routeTitle">تكوين مسار إلى الوجهة</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div id="routeDetails">
-                    <p>يتم حساب المسار...</p>
-                </div>
-                <div class="route-info">
-                    <h4>تفاصيل المسار:</h4>
-                    <div id="routeSteps" class="route-steps">
-                        <!-- سيتم ملؤها بواسطة JavaScript -->
-                    </div>
-                </div>
-            </div>
+    <div class="modal-body">
+
+        <div class="mini-map-container">
+            <div id="miniMap"></div>
         </div>
+
+        <div id="routeDetails" class="route-info"></div>
+
     </div>
+
+    </div>
+
 
     <!-- Footer -->
     <footer>
@@ -1041,6 +1127,11 @@
         let map = L.map('map').setView([36.7525, 3.0418], 10); // إحداثيات الجزائر العاصمة
         let userMarker = null;
         let userLocation = null;
+        let miniMap = null;
+        let miniMarker = null;
+        let miniRouteLine = null;
+
+
 
 
         // إضافة طبقة الخريطة
@@ -1112,64 +1203,64 @@
         }
 
         // وظيفة لعرض الخدمات في القوائم
-        function displayServices(services) {
-            // عرض المستشفيات
-            const hospitalsList = document.getElementById('hospitalsList');
-            hospitalsList.innerHTML = '';
 
+        function displayServices(services) {
+
+            const hospitalsList = document.getElementById('hospitalsList');
+            const policeList = document.getElementById('policeList');
+            const militaryList = document.getElementById('militaryList');
+            const civilDefenseList = document.getElementById('civilDefenseList');
+
+            hospitalsList.innerHTML = '';
+            policeList.innerHTML = '';
+            militaryList.innerHTML = '';
+            civilDefenseList.innerHTML = '';
+
+            // المستشفيات
             services.hospitals.forEach(hospital => {
                 const item = document.createElement('div');
                 item.className = 'service-item';
                 item.innerHTML = `
-                    <span>${hospital.name}</span>
-                    <span class="distance">${hospital.distance.toFixed(1)} كم</span>
-                `;
-                item.addEventListener('click', () => showRouteToService(hospital, 'مستشفى'));
+            <span>${hospital.name}</span>
+            <span class="distance">${hospital.distance.toFixed(1)} كم</span>
+        `;
+                item.addEventListener('click', () => showRouteToService(hospital));
                 hospitalsList.appendChild(item);
             });
 
-            // عرض مراكز الشرطة
-            const policeList = document.getElementById('policeList');
-            policeList.innerHTML = '';
-
+            // الشرطة
             services.police.forEach(police => {
                 const item = document.createElement('div');
                 item.className = 'service-item';
                 item.innerHTML = `
-                    <span>${police.name}</span>
-                    <span class="distance">${police.distance.toFixed(1)} كم</span>
-                `;
-                item.addEventListener('click', () => showRouteToService(police, 'مركز شرطة'));
+            <span>${police.name}</span>
+            <span class="distance">${police.distance.toFixed(1)} كم</span>
+        `;
+                item.addEventListener('click', () => showRouteToService(police));
                 policeList.appendChild(item);
             });
 
-            // عرض مراكز الجيش
-            const militaryList = document.getElementById('militaryList');
-            militaryList.innerHTML = '';
-
+            // الدرك
             services.military.forEach(military => {
                 const item = document.createElement('div');
                 item.className = 'service-item';
                 item.innerHTML = `
-                    <span>${military.name}</span>
-                    <span class="distance">${military.distance.toFixed(1)} كم</span>
-                `;
-                item.addEventListener('click', () => showRouteToService(military, 'مركز جيش'));
+            <span>${military.name}</span>
+            <span class="distance">${military.distance.toFixed(1)} كم</span>
+        `;
+                item.addEventListener('click', () => showRouteToService(military));
                 militaryList.appendChild(item);
             });
 
-            // عرض مراكز الدفاع المدني
-            const civilDefenseList = document.getElementById('civilDefenseList');
-            civilDefenseList.innerHTML = '';
-
-            services.civilDefense.forEach(civilDefense => {
+            // الحماية المدنية
+            services.civilDefense.forEach(civil => {
                 const item = document.createElement('div');
                 item.className = 'service-item';
                 item.innerHTML = `
-                    <span>${civilDefense.name}</span>
-                    <span class="distance">${civilDefense.distance.toFixed(1)} كم</span>
-                `;
-                item.addEventListener('click', () => showRouteToService(civilDefense, 'مركز دفاع مدني'));
+            <span>${civil.name}</span>
+            <span class="distance">${civil.distance.toFixed(1)} كم</span>
+        `;
+                item.addEventListener('click', () => showRouteToService(civil));
                 civilDefenseList.appendChild(item);
             });
         }
@@ -1372,20 +1463,19 @@
         });
 
         // وظيفة عرض مسار إلى الخدمة
-        function showRouteToService(service, serviceType) {
+        function showRouteToService(service) {
+
             if (!userLocation) {
-                alert('الرجاء تحديد موقعك أولاً لعرض المسار');
+                alert('الرجاء تحديد موقعك أولاً');
                 return;
             }
 
             const modal = document.getElementById('routeModal');
             const routeTitle = document.getElementById('routeTitle');
             const routeDetails = document.getElementById('routeDetails');
-            const routeSteps = document.getElementById('routeSteps');
 
-            routeTitle.textContent = `مسار إلى ${serviceType}: ${service.name}`;
+            routeTitle.textContent = service.name;
 
-            // رابط Google Maps
             const googleMapsUrl =
                 `https://www.google.com/maps/dir/?api=1` +
                 `&origin=${userLocation.lat},${userLocation.lng}` +
@@ -1393,49 +1483,94 @@
                 `&travelmode=driving`;
 
             routeDetails.innerHTML = `
-        <p><strong>الوجهة:</strong> ${service.name}</p>
         <p><strong>العنوان:</strong> ${service.address}</p>
         <p><strong>الهاتف:</strong> ${service.phone}</p>
-        <p><strong>المسافة التقريبية:</strong> ${service.distance.toFixed(1)} كم</p>
-        
-        <br>
-        
         <a href="${googleMapsUrl}" target="_blank" class="google-route-btn">
-            <i class="fas fa-map-marked-alt"></i>
             التنقل عبر Google Maps
         </a>
     `;
 
-            // إخفاء خطوات المسار الوهمية
-            routeSteps.innerHTML = '';
-
             modal.style.display = 'flex';
+
+            setTimeout(() => {
+
+                if (!miniMap) {
+                    miniMap = L.map('miniMap', {
+                        zoomControl: false,
+                        attributionControl: false
+                    });
+                }
+
+                miniMap.setView([service.lat, service.lng], 14);
+
+                if (!miniMap._layersInitialized) {
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
+                        .addTo(miniMap);
+                    miniMap._layersInitialized = true;
+                }
+
+                // حذف ماركر قديم
+                if (miniMarker) miniMap.removeLayer(miniMarker);
+
+                miniMarker = L.marker([service.lat, service.lng]).addTo(miniMap);
+
+                // حذف خط قديم
+                if (miniRouteLine) miniMap.removeLayer(miniRouteLine);
+
+                // إنشاء خط بين المستخدم والوجهة
+                miniRouteLine = L.polyline(
+                    [
+                        [userLocation.lat, userLocation.lng],
+                        [service.lat, service.lng]
+                    ],
+                    {
+                        color: '#1a73e8',
+                        weight: 4,
+                        opacity: 0.8
+                    }
+                ).addTo(miniMap);
+
+                // ضبط عرض الخريطة ليشمل النقطتين
+                const bounds = L.latLngBounds([
+                    [userLocation.lat, userLocation.lng],
+                    [service.lat, service.lng]
+                ]);
+
+                miniMap.fitBounds(bounds, { padding: [30, 30] });
+
+                miniMap.invalidateSize();
+
+            }, 200);
+        }
+
+        // وظيفة اتصال الطوارئ
+        const emergencyBtn = document.getElementById('emergencyCall');
+        if (emergencyBtn) {
+            emergencyBtn.addEventListener('click', () => {
+                const emergencyNumber = '14';
+                const confirmCall = confirm(`هل تريد الاتصال برقم الطوارئ ${emergencyNumber}؟`);
+                if (confirmCall) {
+                    window.location.href = `tel:${emergencyNumber}`;
+                }
+            });
         }
 
 
-        // وظيفة اتصال الطوارئ
-        document.getElementById('emergencyCall').addEventListener('click', () => {
-            const emergencyNumber = '14'; // رقم الدفاع المدني في الجزائر
-            const confirmCall = confirm(`هل تريد الاتصال برقم الطوارئ ${emergencyNumber}؟`);
+        // إغلاق النافذة
+        document.addEventListener("click", function (e) {
 
-            if (confirmCall) {
-                alert(`جارٍ الاتصال برقم الطوارئ: ${emergencyNumber}\n\nيرجى الانتظار للاتصال أو الاتصال يدوياً.`);
-                // في التطبيق الحقيقي، يمكن استخدام: window.location.href = `tel:${emergencyNumber}`;
+            const modal = document.getElementById("routeModal");
+
+            if (e.target.closest(".close-modal")) {
+                modal.style.display = "none";
             }
-        });
 
-        // إغلاق النافذة المنبثقة
-        document.querySelector('.close-modal').addEventListener('click', () => {
-            document.getElementById('routeModal').style.display = 'none';
-        });
-
-        // إغلاق النافذة عند الضغط خارجها
-        window.addEventListener('click', (event) => {
-            const modal = document.getElementById('routeModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
+            if (e.target === modal) {
+                modal.style.display = "none";
             }
+
         });
+
 
         // تهيئة الخريطة ببعض البيانات الافتراضية عند التحميل
         document.addEventListener('DOMContentLoaded', () => {
@@ -1463,6 +1598,28 @@
                 menu.style.display = "none";
             }
         });
+
+
+        // إخفاء الهيدر
+
+        let lastScrollTop = 0;
+        const header = document.querySelector("header");
+
+        window.addEventListener("scroll", function () {
+
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (currentScroll > lastScrollTop && currentScroll > 100) {
+                // النزول للأسفل
+                header.classList.add("hide-header");
+            } else {
+                // الصعود للأعلى
+                header.classList.remove("hide-header");
+            }
+
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+
     </script>
 
 </body>
