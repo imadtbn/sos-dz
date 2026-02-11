@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap">
+
     <style>
         * {
             margin: 0;
@@ -14,7 +16,7 @@
             box-sizing: border-box;
             font-family: 'Cairo', sans-serif;
         }
-        
+
         :root {
             --primary: #e63946;
             --secondary: #1d3557;
@@ -23,20 +25,20 @@
             --warning: #ff9e00;
             --success: #2a9d8f;
         }
-        
+
         body {
             background-color: #f5f7fa;
             color: #333;
             line-height: 1.6;
         }
-        
+
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
-        
+
         /* Header Styles */
         header {
             background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
@@ -47,29 +49,29 @@
             top: 0;
             z-index: 1000;
         }
-        
+
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        
+
         .logo i {
             font-size: 2.2rem;
             color: var(--primary);
         }
-        
+
         .logo h1 {
             font-size: 1.8rem;
             font-weight: 700;
         }
-        
+
         .emergency-contact {
             background-color: var(--primary);
             padding: 8px 15px;
@@ -80,7 +82,7 @@
             gap: 8px;
             box-shadow: 0 3px 8px rgba(230, 57, 70, 0.4);
         }
-        
+
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(29, 53, 87, 0.9), rgba(69, 123, 157, 0.9)), url('https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
@@ -90,18 +92,18 @@
             padding: 3rem 0;
             text-align: center;
         }
-        
+
         .hero h2 {
             font-size: 2.2rem;
             margin-bottom: 1rem;
         }
-        
+
         .hero p {
             font-size: 1.1rem;
             max-width: 700px;
             margin: 0 auto 1.5rem;
         }
-        
+
         .location-access {
             display: flex;
             justify-content: center;
@@ -110,7 +112,7 @@
             margin-top: 2rem;
             flex-wrap: wrap;
         }
-        
+
         .btn {
             padding: 12px 24px;
             border: none;
@@ -123,27 +125,27 @@
             align-items: center;
             gap: 8px;
         }
-        
+
         .btn-primary {
             background-color: var(--primary);
             color: white;
         }
-        
+
         .btn-secondary {
             background-color: var(--accent);
             color: white;
         }
-        
+
         .btn-warning {
             background-color: var(--warning);
             color: white;
         }
-        
+
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        
+
         /* Main Content */
         .main-content {
             display: grid;
@@ -151,13 +153,13 @@
             gap: 30px;
             padding: 2rem 0;
         }
-        
+
         @media (max-width: 768px) {
             .main-content {
                 grid-template-columns: 1fr;
             }
         }
-        
+
         /* Map Section */
         .map-section {
             background-color: white;
@@ -165,7 +167,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             overflow: hidden;
         }
-        
+
         .section-header {
             background-color: var(--secondary);
             color: white;
@@ -174,19 +176,19 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         #map {
             height: 500px;
             width: 100%;
         }
-        
+
         /* Services Section */
         .services {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-        
+
         .service-card {
             background-color: white;
             border-radius: 12px;
@@ -194,18 +196,18 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease;
         }
-        
+
         .service-card:hover {
             transform: translateY(-5px);
         }
-        
+
         .service-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 1rem;
         }
-        
+
         .service-title {
             display: flex;
             align-items: center;
@@ -213,7 +215,7 @@
             font-size: 1.2rem;
             font-weight: 700;
         }
-        
+
         .service-icon {
             width: 50px;
             height: 50px;
@@ -224,51 +226,51 @@
             font-size: 1.5rem;
             color: white;
         }
-        
+
         .hospital .service-icon {
             background-color: var(--primary);
         }
-        
+
         .police .service-icon {
             background-color: var(--secondary);
         }
-        
+
         .military .service-icon {
             background-color: #555;
         }
-        
+
         .civil-defense .service-icon {
             background-color: var(--warning);
         }
-        
+
         .service-phone {
             color: var(--primary);
             font-weight: 700;
             font-size: 1.1rem;
         }
-        
+
         .service-details {
             margin-top: 1rem;
             padding-top: 1rem;
             border-top: 1px dashed #eee;
         }
-        
+
         .service-item {
             display: flex;
             justify-content: space-between;
             padding: 8px 0;
             border-bottom: 1px solid #f5f5f5;
         }
-        
+
         .service-item:last-child {
             border-bottom: none;
         }
-        
+
         .distance {
             color: var(--success);
             font-weight: 700;
         }
-        
+
         /* Emergency Numbers */
         .emergency-numbers {
             background-color: white;
@@ -277,21 +279,21 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             margin-top: 2rem;
         }
-        
+
         .numbers-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 15px;
             margin-top: 1.5rem;
         }
-        
+
         .number-card {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             padding: 1rem;
             border-radius: 10px;
             border-right: 5px solid var(--primary);
         }
-        
+
         .number-card h4 {
             display: flex;
             align-items: center;
@@ -299,7 +301,7 @@
             margin-bottom: 10px;
             color: var(--secondary);
         }
-        
+
         .number-card p {
             font-size: 1.5rem;
             font-weight: 700;
@@ -307,7 +309,7 @@
             text-align: center;
             direction: ltr;
         }
-        
+
         /* Footer */
         footer {
             background-color: var(--secondary);
@@ -316,14 +318,14 @@
             margin-top: 3rem;
             text-align: center;
         }
-        
+
         .footer-content {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 1rem;
         }
-        
+
         .footer-links {
             display: flex;
             gap: 20px;
@@ -331,18 +333,18 @@
             flex-wrap: wrap;
             justify-content: center;
         }
-        
+
         .footer-links a {
             color: #ddd;
             text-decoration: none;
             transition: color 0.3s;
         }
-        
+
         .footer-links a:hover {
             color: white;
             text-decoration: underline;
         }
-        
+
         /* Modal */
         .modal {
             display: none;
@@ -356,7 +358,7 @@
             justify-content: center;
             align-items: center;
         }
-        
+
         .modal-content {
             background-color: white;
             width: 90%;
@@ -364,7 +366,7 @@
             border-radius: 12px;
             overflow: hidden;
         }
-        
+
         .modal-header {
             background-color: var(--secondary);
             color: white;
@@ -373,11 +375,11 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .modal-body {
             padding: 1.5rem;
         }
-        
+
         .close-modal {
             background: none;
             border: none;
@@ -385,53 +387,53 @@
             font-size: 1.5rem;
             cursor: pointer;
         }
-        
+
         .route-info {
             margin-top: 1.5rem;
             padding-top: 1rem;
             border-top: 1px solid #eee;
         }
-        
+
         .route-steps {
             margin-top: 1rem;
             max-height: 200px;
             overflow-y: auto;
         }
-        
+
         .route-step {
             padding: 8px 0;
             border-bottom: 1px solid #f5f5f5;
             display: flex;
             gap: 10px;
         }
-        
+
         .route-step i {
             color: var(--accent);
         }
-        
+
         /* Responsive adjustments */
         @media (max-width: 992px) {
             .header-content {
                 flex-direction: column;
                 gap: 15px;
             }
-            
+
             .hero h2 {
                 font-size: 1.8rem;
             }
         }
-        
+
         @media (max-width: 576px) {
             .location-access {
                 flex-direction: column;
             }
-            
+
             .btn {
                 width: 100%;
                 justify-content: center;
             }
         }
-        
+
         /* Loading spinner */
         .spinner {
             display: none;
@@ -443,13 +445,194 @@
             animation: spin 1s linear infinite;
             margin: 20px auto;
         }
-        
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /*....زر الطوارئ عائم*/
+        .floating-emergency {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 65px;
+            height: 65px;
+            background: #e63946;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            z-index: 3000;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .phone-link {
+            text-decoration: none;
+            color: #e63946;
+            /* نفس لون الطوارئ في الموقع */
+            font-weight: 700;
+            font-size: 1.4rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .phone-link i {
+            font-size: 1rem;
+        }
+
+
+        .call-link {
+            text-decoration: none;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .call-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .phone-number {
+            font-weight: 700;
+            font-size: 1.1rem;
+            direction: ltr;
+        }
+
+
+        /* نفس لون الطوارئ في Emergency Numbers */
+
+        .call-link-Emergency {
+            text-decoration: none;
+            color: rgb(235, 9, 9);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .phone-number-Emergency {
+            font-weight: 700;
+            font-size: 1.3rem;
+            direction: ltr;
+        }
+
+
+        .messenger-link {
+            text-decoration: none;
+            color: #0084FF;
+            /* لون ماسنجر الرسمي */
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .messenger-link:hover {
+            opacity: 0.85;
+        }
+
+        .floating-wrapper {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            z-index: 9999;
+        }
+
+        .floating-emergency {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: #e63946;
+            color: white;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: 0.3s;
+        }
+
+        .floating-emergency:hover {
+            transform: scale(1.1);
+        }
+
+        .emergency-menu {
+            position: absolute;
+            bottom: 80px;
+            left: 0;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .emergency-menu a {
+            background: white;
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+            transition: 0.2s;
+        }
+
+        .emergency-menu a:hover {
+            background: #e63946;
+            color: white;
+        }
+
+
+
+
+        .google-route-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1a73e8;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .google-route-btn:hover {
+            background: #1558b0;
+            transform: translateY(-2px);
         }
     </style>
+
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -458,10 +641,35 @@
                 <i class="fas fa-crosshairs"></i>
                 <h1>الطوارئ والنجدة في الجزائر</h1>
             </div>
-            <div class="emergency-contact">
-                <i class="fas fa-phone-alt"></i>
-                <span>الطوارئ: 14</span>
-            </div>
+
+            <a href="tel:1021" class="emergency-contact call-link">
+                <img src="icons/dgpc.svg" alt="logo dgpc" width="24" height="24" loading="lazy">
+                <span>الحماية المدنية</span>
+                <span class="phone-number"></span>
+                <i class="fas fa-phone"></i>
+            </a>
+
+            <a href="tel:1055" class="emergency-contact call-link">
+                <img src="icons/CGN.jpg" alt="logo CGN" width="24" height="24" loading="lazy">
+                <span> الدرك الوطني</span>
+                <span class="phone-number"></span>
+                <i class="fas fa-phone"></i>
+            </a>
+
+            <a href="tel:1548" class="emergency-contact call-link">
+                <img src="icons/dgsn.png" alt="logo dgsn" width="24" height="24" loading="lazy">
+                <span>الشرطة</span>
+                <span class="phone-number"></span>
+                <i class="fas fa-phone"></i>
+            </a>
+
+            <a href="tel:1054" class="emergency-contact call-link">
+                <img src="icons/CFN.png" alt="logo cfn" width="24" height="24" loading="lazy">
+                <span>حرس السواحل</span>
+                <span class="phone-number"></span>
+                <i class="fas fa-phone"></i>
+            </a>
+
         </div>
     </header>
 
@@ -469,8 +677,10 @@
     <section class="hero">
         <div class="container">
             <h2>خدمات الطوارئ والنجدة في الجزائر</h2>
-            <p>في حالة الطوارئ، حدد موقعك للحصول على أقرب مستشفى، مركز شرطة، قسم جيش أو مركز دفاع مدني مع أرقام الهاتف وإمكانية تكوين المسارات</p>
-            
+            <p>في حالة الطوارئ، حدد موقعك للحصول على أقرب مستشفى، مركز شرطة، فرقة الدرك الوطني أو وحدة الحماية المدنية
+                مع أرقام الهاتف
+                وإمكانية تكوين المسارات</p>
+
             <div class="location-access">
                 <button id="getLocation" class="btn btn-primary">
                     <i class="fas fa-map-marker-alt"></i>
@@ -480,12 +690,14 @@
                     <i class="fas fa-hospital-alt"></i>
                     عرض جميع مراكز الخدمات
                 </button>
-                <button id="emergencyCall" class="btn btn-warning">
-                    <i class="fas fa-phone-alt"></i>
+
+                <!-- <button id="emergencyCall" class="btn btn-warning">
+                    <i class="fas fa-phone"></i>
                     اتصال طوارئ
-                </button>
+                </button>-->
+
             </div>
-            
+
             <div id="locationStatus" style="margin-top: 15px; color: #ffdddd; font-weight: 700;"></div>
         </div>
     </section>
@@ -501,7 +713,7 @@
                 </div>
                 <div id="map"></div>
             </div>
-            
+
             <!-- Services Section -->
             <div class="services">
                 <div class="service-card hospital">
@@ -512,7 +724,6 @@
                             </div>
                             <h3>المستشفيات</h3>
                         </div>
-                        <div class="service-phone">الهاتف: 023 41 41 41</div>
                     </div>
                     <div class="service-details">
                         <div id="hospitalsList">
@@ -521,7 +732,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="service-card police">
                     <div class="service-header">
                         <div class="service-title">
@@ -530,7 +741,6 @@
                             </div>
                             <h3>مراكز الشرطة</h3>
                         </div>
-                        <div class="service-phone">الشرطة: 17</div>
                     </div>
                     <div class="service-details">
                         <div id="policeList">
@@ -539,16 +749,15 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="service-card military">
                     <div class="service-header">
                         <div class="service-title">
                             <div class="service-icon">
                                 <i class="fas fa-star"></i>
                             </div>
-                            <h3>مراكز الجيش</h3>
+                            <h3>الفرقة الإقليمية للدرك الوطني</h3>
                         </div>
-                        <div class="service-phone">الهاتف: 021 71 15 15</div>
                     </div>
                     <div class="service-details">
                         <div id="militaryList">
@@ -557,16 +766,16 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="service-card civil-defense">
                     <div class="service-header">
                         <div class="service-title">
                             <div class="service-icon">
                                 <i class="fas fa-fire-extinguisher"></i>
                             </div>
-                            <h3>الدفاع المدني</h3>
+                            <h3>وحدات الحماية المدنية</h3>
                         </div>
-                        <div class="service-phone">الدفاع المدني: 14</div>
+
                     </div>
                     <div class="service-details">
                         <div id="civilDefenseList">
@@ -577,40 +786,195 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Emergency Numbers -->
         <div class="emergency-numbers">
             <div class="section-header">
-                <i class="fas fa-phone-alt"></i>
                 <h3>أرقام الطوارئ الهامة</h3>
+                <i class="fas fa-phone"></i>
             </div>
+
             <div class="numbers-grid">
+
                 <div class="number-card">
-                    <h4><i class="fas fa-ambulance"></i> الإسعاف</h4>
-                    <p>14</p>
+                    <h4>
+                        <img src="icons/dgpc.svg" alt="logo dgpc" width="31" height="32" loading="lazy">
+                        الحماية المدنية
+                    </h4>
+
+                    <p>
+                        <a href="tel:121" class="call-link-Emergency">
+                            <i class="fas fa-phone"></i>
+                            <span class="phone-number-Emergency">1021</span>
+                        </a>
+                    </p>
                 </div>
+
                 <div class="number-card">
-                    <h4><i class="fas fa-shield-alt"></i> الشرطة</h4>
-                    <p>17</p>
+                    <h4>
+                        <img src="icons/CGN.jpg" alt="logo CGN" width="31" height="32" loading="lazy">
+                        الدرك الوطني
+                    </h4>
+
+                    <p>
+                        <a href="tel:1055" class="call-link-Emergency">
+                            <i class="fas fa-phone"></i>
+                            <span class="phone-number-Emergency">1055</span>
+                        </a>
+                    </p>
                 </div>
+
                 <div class="number-card">
-                    <h4><i class="fas fa-fire"></i> الحماية المدنية</h4>
-                    <p>14</p>
+                    <h4>
+                        <img src="icons/tariki.jpg" alt="logo tariki" width="31" height="32" loading="lazy">
+                        مركز الإعلام والتنسيق المروري - طريقي - عبر المسنجر
+                    </h4>
+
+                    <p>
+                        <a href="https://www.facebook.com/messages/t/402215187257085?locale=ar_AR" target="_blank"
+                            class="messenger-link">
+                            <i class="fab fa-facebook-messenger"></i>
+                            <span class="phone-number-Emergency">طريقي</span>
+                        </a>
+                    </p>
                 </div>
+
                 <div class="number-card">
-                    <h4><i class="fas fa-gas-pump"></i> الغاز</h4>
-                    <p>033 33 33 33</p>
+                    <h4>
+                        <img src="icons/CFN.png" alt="logo cfa" width="31" height="32" loading="lazy">
+                        حرس السواحل
+                    </h4>
+
+                    <p>
+                        <a href="tel:1054" class="call-link-Emergency">
+                            <i class="fas fa-phone"></i>
+                            <span class="phone-number-Emergency">1054</span>
+                        </a>
+                    </p>
                 </div>
+
                 <div class="number-card">
-                    <h4><i class="fas fa-bolt"></i> الكهرباء</h4>
-                    <p>033 33 33 34</p>
+                    <h4>
+                        <img src="icons/dgsn.png" alt="logo dgsn" width="31" height="32" loading="lazy">
+                        الشرطة الجزائرية
+                    </h4>
+
+                    <p>
+                        <a href="tel:1548" class="call-link-Emergency">
+                            <i class="fas fa-phone"></i>
+                            <span class="phone-number-Emergency">1548</span>
+                        </a>
+                    </p>
                 </div>
+
                 <div class="number-card">
-                    <h4><i class="fas fa-tint"></i> المياه</h4>
-                    <p>033 33 33 35</p>
+                    <h4>
+                        <img src="icons/gosp.jpg" alt="logo gosp" width="31" height="32" loading="lazy">
+                        فرقة جمهرة العمليات الخاصة للشرطة الجزائرية
+                    </h4>
+
+                    <p>
+                        <a href="tel:104" class="call-link-Emergency">
+                            <i class="fas fa-phone"></i>
+                            <span class="phone-number-Emergency">104</span>
+                        </a>
+                    </p>
                 </div>
+
+
+
+                <div class="number-card">
+                    <h4>
+                        <img src="icons/sonelgaz.png" alt="logo sonelgaz" width="31" height="32" loading="lazy">
+                        الكهرباء والغاز
+                    </h4>
+
+                    <p>
+                        <a href="tel:3030" class="call-link-Emergency">
+                            <i class="fas fa-phone"></i>
+                            <span class="phone-number-Emergency">3030</span>
+                        </a>
+                    </p>
+                </div>
+
+                <div class="number-card">
+                    <h4>
+                        <img src="icons/ade.png" alt="logo ade" width="31" height="32" loading="lazy">
+                        الجزائرية للمياه
+                    </h4>
+
+                    <p>
+                        <a href="tel:1593" class="call-link-Emergency">
+                            <i class="fas fa-phone"></i>
+                            <span class="phone-number-Emergency">1593</span>
+                        </a>
+                    </p>
+                </div>
+
+                <div class="number-card">
+                    <h4>
+                        <img src="icons/seaal.webp" alt="logo seaal" width="31" height="32" loading="lazy">
+                        سيال للتطهير والمياه
+                    </h4>
+
+                    <p>
+                        <a href="tel:1594" class="call-link-Emergency">
+                            <i class="fas fa-phone"></i>
+                            <span class="phone-number-Emergency">1594</span>
+                        </a>
+                    </p>
+                </div>
+
+
+                <div class="number-card">
+                    <h4>
+                        <img src="icons/naftal.webp" alt="logo naftal" width="31" height="32" loading="lazy">
+                        نفطال للمحروقات والوقود
+                    </h4>
+
+                    <p>
+                        <a href="tel:3305" class="call-link-Emergency">
+                            <i class="fas fa-phone"></i>
+                            <span class="phone-number-Emergency">3305</span>
+                        </a>
+                    </p>
+                </div>
+
+
+
+
+                <div class="number-card">
+                    <h4>
+                        <img src="icons/DGF.png" alt="logo DGF" width="31" height="32" loading="lazy">
+                        المديرية العامة للغابات
+                    </h4>
+
+                    <p>
+                        <a href="tel:1070" class="call-link-Emergency">
+                            <i class="fas fa-phone"></i>
+                            <span class="phone-number-Emergency">1070</span>
+                        </a>
+                    </p>
+                </div>
+
+
+                <div class="number-card">
+                    <h4>
+                        <img src="icons/pasteur.jpg" alt="logo naftal" width="31" height="32" loading="lazy">
+                        معهد باستور - الجزائر
+                    </h4>
+
+                    <p>
+                        <a href="tel:+21323367504" class="call-link-Emergency">
+                            <i class="fas fa-phone"></i>
+                            <span class="phone-number-Emergency">+21323367504</span>
+                        </a>
+                    </p>
+                </div>
+
             </div>
         </div>
+
     </div>
 
     <!-- Route Modal -->
@@ -652,20 +1016,38 @@
         </div>
     </footer>
 
+    <!-- زر الطوارئ العائم -->
+    <div class="floating-wrapper">
+
+        <button id="emergencyToggle" class="floating-emergency">
+            <i class="fas fa-phone"></i>
+        </button>
+
+        <div id="emergencyMenu" class="emergency-menu">
+            <a href="tel:14"><i class="fas fa-ambulance"></i> الإسعاف</a>
+            <a href="tel:1548"><i class="fas fa-shield-alt"></i> الشرطة</a>
+            <a href="tel:1055"><i class="fas fa-user-shield"></i> الدرك الوطني</a>
+            <a href="tel:1021"><i class="fas fa-fire-extinguisher"></i> الحماية المدنية</a>
+        </div>
+
+    </div>
+
+
     <!-- JavaScript -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <script>
         // تهيئة الخريطة
         let map = L.map('map').setView([36.7525, 3.0418], 10); // إحداثيات الجزائر العاصمة
         let userMarker = null;
         let userLocation = null;
-        let routeLayer = null;
-        
+
+
         // إضافة طبقة الخريطة
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
-        
+
         // بيانات وهمية لمراكز الخدمات في الجزائر
         const serviceLocations = {
             hospitals: [
@@ -675,34 +1057,34 @@
                 { name: "مستشفى باب الواد", lat: 36.7892, lng: 3.0575, phone: "023 41 44 44", address: "باب الواد، الجزائر" }
             ],
             police: [
-                { name: "مفوضية الشرطة - القبة", lat: 36.7392, lng: 3.0708, phone: "017 71 71 71", address: "القبة، الجزائر" },
-                { name: "مفوضية الشرطة - الحراش", lat: 36.7064, lng: 3.1808, phone: "017 71 72 72", address: "الحراش، الجزائر" },
-                { name: "مفوضية الشرطة - بولوغين", lat: 36.7553, lng: 2.9975, phone: "017 71 73 73", address: "بولوغين، الجزائر" }
+                { name: "مركز الشرطة - القبة", lat: 36.7392, lng: 3.0708, phone: "017 71 71 71", address: "القبة، الجزائر" },
+                { name: "مركز الشرطة - الحراش", lat: 36.7064, lng: 3.1808, phone: "017 71 72 72", address: "الحراش، الجزائر" },
+                { name: "مركز الشرطة - بولوغين", lat: 36.7553, lng: 2.9975, phone: "017 71 73 73", address: "بولوغين، الجزائر" }
             ],
             military: [
-                { name: "ثكنة الجيش - بني مسوس", lat: 36.7281, lng: 3.0281, phone: "021 71 15 15", address: "بني مسوس، الجزائر" },
-                { name: "ثكنة الجيش - الحراش", lat: 36.7153, lng: 3.1667, phone: "021 71 16 16", address: "الحراش، الجزائر" }
+                { name: "فرقة الدرك - بني مسوس", lat: 36.7281, lng: 3.0281, phone: "021 71 15 15", address: "بني مسوس، الجزائر" },
+                { name: "فرقة الدرك - الحراش", lat: 36.7153, lng: 3.1667, phone: "021 71 16 16", address: "الحراش، الجزائر" }
             ],
             civilDefense: [
-                { name: "مركز الدفاع المدني - القبة", lat: 36.7469, lng: 3.0764, phone: "014 14 14 14", address: "القبة، الجزائر" },
-                { name: "مركز الدفاع المدني - باب الواد", lat: 36.7950, lng: 3.0500, phone: "014 14 14 15", address: "باب الواد، الجزائر" },
-                { name: "مركز الدفاع المدني - الدويرة", lat: 36.7167, lng: 3.2000, phone: "014 14 14 16", address: "الدويرة، الجزائر" }
+                { name: "وحدة الحماية المدنية - القبة", lat: 36.7469, lng: 3.0764, phone: "014 14 14 14", address: "القبة، الجزائر" },
+                { name: "وحدة الحماية المدنية - باب الواد", lat: 36.7950, lng: 3.0500, phone: "014 14 14 15", address: "باب الواد، الجزائر" },
+                { name: "وحدة الحماية المدنية - الدويرة", lat: 36.7167, lng: 3.2000, phone: "014 14 14 16", address: "الدويرة، الجزائر" }
             ]
         };
-        
+
         // وظيفة حساب المسافة بين نقطتين (صيغة هافرسين)
         function calculateDistance(lat1, lon1, lat2, lon2) {
             const R = 6371; // نصف قطر الأرض بالكيلومترات
             const dLat = (lat2 - lat1) * Math.PI / 180;
             const dLon = (lon2 - lon1) * Math.PI / 180;
-            const a = 
-                Math.sin(dLat/2) * Math.sin(dLat/2) +
-                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
-                Math.sin(dLon/2) * Math.sin(dLon/2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            const a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             return R * c;
         }
-        
+
         // وظيفة لتحديد أقرب الخدمات
         function findNearestServices(userLat, userLng) {
             const nearestServices = {
@@ -711,30 +1093,30 @@
                 military: [],
                 civilDefense: []
             };
-            
+
             // لكل نوع خدمة، نحسب المسافة ونرتبها
             for (const serviceType in serviceLocations) {
                 const services = serviceLocations[serviceType].map(service => {
                     const distance = calculateDistance(userLat, userLng, service.lat, service.lng);
                     return { ...service, distance };
                 });
-                
+
                 // ترتيب حسب المسافة (الأقرب أولاً)
                 services.sort((a, b) => a.distance - b.distance);
-                
+
                 // أخذ أقرب 3 خدمات
                 nearestServices[serviceType] = services.slice(0, 3);
             }
-            
+
             return nearestServices;
         }
-        
+
         // وظيفة لعرض الخدمات في القوائم
         function displayServices(services) {
             // عرض المستشفيات
             const hospitalsList = document.getElementById('hospitalsList');
             hospitalsList.innerHTML = '';
-            
+
             services.hospitals.forEach(hospital => {
                 const item = document.createElement('div');
                 item.className = 'service-item';
@@ -745,11 +1127,11 @@
                 item.addEventListener('click', () => showRouteToService(hospital, 'مستشفى'));
                 hospitalsList.appendChild(item);
             });
-            
+
             // عرض مراكز الشرطة
             const policeList = document.getElementById('policeList');
             policeList.innerHTML = '';
-            
+
             services.police.forEach(police => {
                 const item = document.createElement('div');
                 item.className = 'service-item';
@@ -760,11 +1142,11 @@
                 item.addEventListener('click', () => showRouteToService(police, 'مركز شرطة'));
                 policeList.appendChild(item);
             });
-            
+
             // عرض مراكز الجيش
             const militaryList = document.getElementById('militaryList');
             militaryList.innerHTML = '';
-            
+
             services.military.forEach(military => {
                 const item = document.createElement('div');
                 item.className = 'service-item';
@@ -775,11 +1157,11 @@
                 item.addEventListener('click', () => showRouteToService(military, 'مركز جيش'));
                 militaryList.appendChild(item);
             });
-            
+
             // عرض مراكز الدفاع المدني
             const civilDefenseList = document.getElementById('civilDefenseList');
             civilDefenseList.innerHTML = '';
-            
+
             services.civilDefense.forEach(civilDefense => {
                 const item = document.createElement('div');
                 item.className = 'service-item';
@@ -791,7 +1173,7 @@
                 civilDefenseList.appendChild(item);
             });
         }
-        
+
         // وظيفة إضافة العلامات على الخريطة
         function addMarkersToMap(services) {
             // إزالة العلامات القديمة ما عدا علامة المستخدم
@@ -800,7 +1182,7 @@
                     map.removeLayer(layer);
                 }
             });
-            
+
             // إضافة علامات للمستشفيات
             services.hospitals.forEach(hospital => {
                 L.marker([hospital.lat, hospital.lng], {
@@ -810,10 +1192,10 @@
                         className: 'hospital-marker'
                     })
                 })
-                .addTo(map)
-                .bindPopup(`<b>${hospital.name}</b><br>${hospital.address}<br>الهاتف: ${hospital.phone}<br>المسافة: ${hospital.distance.toFixed(1)} كم`);
+                    .addTo(map)
+                    .bindPopup(`<b>${hospital.name}</b><br>${hospital.address}<br>الهاتف: ${hospital.phone}<br>المسافة: ${hospital.distance.toFixed(1)} كم`);
             });
-            
+
             // إضافة علامات لمراكز الشرطة
             services.police.forEach(police => {
                 L.marker([police.lat, police.lng], {
@@ -823,10 +1205,10 @@
                         className: 'police-marker'
                     })
                 })
-                .addTo(map)
-                .bindPopup(`<b>${police.name}</b><br>${police.address}<br>الهاتف: ${police.phone}<br>المسافة: ${police.distance.toFixed(1)} كم`);
+                    .addTo(map)
+                    .bindPopup(`<b>${police.name}</b><br>${police.address}<br>الهاتف: ${police.phone}<br>المسافة: ${police.distance.toFixed(1)} كم`);
             });
-            
+
             // إضافة علامات لمراكز الجيش
             services.military.forEach(military => {
                 L.marker([military.lat, military.lng], {
@@ -836,10 +1218,10 @@
                         className: 'military-marker'
                     })
                 })
-                .addTo(map)
-                .bindPopup(`<b>${military.name}</b><br>${military.address}<br>الهاتف: ${military.phone}<br>المسافة: ${military.distance.toFixed(1)} كم`);
+                    .addTo(map)
+                    .bindPopup(`<b>${military.name}</b><br>${military.address}<br>الهاتف: ${military.phone}<br>المسافة: ${military.distance.toFixed(1)} كم`);
             });
-            
+
             // إضافة علامات لمراكز الدفاع المدني
             services.civilDefense.forEach(civilDefense => {
                 L.marker([civilDefense.lat, civilDefense.lng], {
@@ -849,33 +1231,40 @@
                         className: 'civil-defense-marker'
                     })
                 })
-                .addTo(map)
-                .bindPopup(`<b>${civilDefense.name}</b><br>${civilDefense.address}<br>الهاتف: ${civilDefense.phone}<br>المسافة: ${civilDefense.distance.toFixed(1)} كم`);
+                    .addTo(map)
+                    .bindPopup(`<b>${civilDefense.name}</b><br>${civilDefense.address}<br>الهاتف: ${civilDefense.phone}<br>المسافة: ${civilDefense.distance.toFixed(1)} كم`);
             });
         }
-        
+
         // وظيفة تحديد موقع المستخدم
         document.getElementById('getLocation').addEventListener('click', () => {
             const status = document.getElementById('locationStatus');
+            const button = document.getElementById('getLocation');
+            button.disabled = true;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تحديد الموقع...';
+
+            button.disabled = false;
+            button.innerHTML = '<i class="fas fa-map-marker-alt"></i> تحديد موقعي الحالي';
+
             status.textContent = 'جاري تحديد موقعك...';
             status.style.color = '#ffdddd';
-            
+
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
                         const userLat = position.coords.latitude;
                         const userLng = position.coords.longitude;
                         userLocation = { lat: userLat, lng: userLng };
-                        
+
                         // تحديث حالة الموقع
                         status.textContent = `تم تحديد موقعك: ${userLat.toFixed(4)}, ${userLng.toFixed(4)}`;
                         status.style.color = '#aaffaa';
-                        
+
                         // إضافة علامة المستخدم على الخريطة
                         if (userMarker) {
                             map.removeLayer(userMarker);
                         }
-                        
+
                         userMarker = L.marker([userLat, userLng], {
                             icon: L.divIcon({
                                 html: '<i class="fas fa-user" style="color: #2a9d8f; font-size: 24px;"></i>',
@@ -883,26 +1272,26 @@
                                 className: 'user-marker'
                             })
                         })
-                        .addTo(map)
-                        .bindPopup('<b>موقعك الحالي</b>');
-                        
+                            .addTo(map)
+                            .bindPopup('<b>موقعك الحالي</b>');
+
                         // تكبير الخريطة على موقع المستخدم
                         map.setView([userLat, userLng], 13);
-                        
+
                         // العثور على أقرب الخدمات
                         const nearestServices = findNearestServices(userLat, userLng);
-                        
+
                         // عرض الخدمات في القوائم
                         displayServices(nearestServices);
-                        
+
                         // إضافة العلامات على الخريطة
                         addMarkersToMap(nearestServices);
                     },
                     (error) => {
                         console.error('خطأ في تحديد الموقع:', error);
                         let errorMessage = 'فشل تحديد الموقع. ';
-                        
-                        switch(error.code) {
+
+                        switch (error.code) {
                             case error.PERMISSION_DENIED:
                                 errorMessage += 'تم رفض إذن الموقع.';
                                 break;
@@ -915,10 +1304,10 @@
                             default:
                                 errorMessage += 'حدث خطأ غير معروف.';
                         }
-                        
+
                         status.textContent = errorMessage;
                         status.style.color = '#ffaaaa';
-                        
+
                         // استخدام موقع افتراضي (الجزائر العاصمة)
                         userLocation = { lat: 36.7525, lng: 3.0418 };
                         const nearestServices = findNearestServices(userLocation.lat, userLocation.lng);
@@ -931,14 +1320,14 @@
                 status.style.color = '#ffaaaa';
             }
         });
-        
+
         // وظيفة عرض جميع الخدمات
         document.getElementById('showAllServices').addEventListener('click', () => {
             if (!userLocation) {
                 alert('الرجاء تحديد موقعك أولاً');
                 return;
             }
-            
+
             // جمع جميع الخدمات
             const allServices = {
                 hospitals: serviceLocations.hospitals.map(h => ({
@@ -958,13 +1347,13 @@
                     distance: calculateDistance(userLocation.lat, userLocation.lng, c.lat, c.lng)
                 }))
             };
-            
+
             // عرض جميع الخدمات
             displayServices(allServices);
-            
+
             // إضافة جميع العلامات على الخريطة
             addMarkersToMap(allServices);
-            
+
             // تكبير الخريطة لتناسب جميع العلامات
             const allPoints = [
                 ...allServices.hospitals,
@@ -972,7 +1361,7 @@
                 ...allServices.military,
                 ...allServices.civilDefense
             ].map(s => [s.lat, s.lng]);
-            
+
             if (allPoints.length > 0) {
                 const bounds = L.latLngBounds(allPoints);
                 if (userMarker) {
@@ -981,106 +1370,101 @@
                 map.fitBounds(bounds);
             }
         });
-        
+
         // وظيفة عرض مسار إلى الخدمة
         function showRouteToService(service, serviceType) {
             if (!userLocation) {
                 alert('الرجاء تحديد موقعك أولاً لعرض المسار');
                 return;
             }
-            
+
             const modal = document.getElementById('routeModal');
             const routeTitle = document.getElementById('routeTitle');
             const routeDetails = document.getElementById('routeDetails');
             const routeSteps = document.getElementById('routeSteps');
-            
+
             routeTitle.textContent = `مسار إلى ${serviceType}: ${service.name}`;
+
+            // رابط Google Maps
+            const googleMapsUrl =
+                `https://www.google.com/maps/dir/?api=1` +
+                `&origin=${userLocation.lat},${userLocation.lng}` +
+                `&destination=${service.lat},${service.lng}` +
+                `&travelmode=driving`;
+
             routeDetails.innerHTML = `
-                <p><strong>الوجهة:</strong> ${service.name}</p>
-                <p><strong>العنوان:</strong> ${service.address}</p>
-                <p><strong>الهاتف:</strong> ${service.phone}</p>
-                <p><strong>المسافة:</strong> ${service.distance.toFixed(1)} كم</p>
-                <p><strong>الوقت المقدر:</strong> ${Math.round(service.distance * 3)} دقيقة بالسيارة</p>
-            `;
-            
-            // إنشاء خطوات المسار الوهمية
+        <p><strong>الوجهة:</strong> ${service.name}</p>
+        <p><strong>العنوان:</strong> ${service.address}</p>
+        <p><strong>الهاتف:</strong> ${service.phone}</p>
+        <p><strong>المسافة التقريبية:</strong> ${service.distance.toFixed(1)} كم</p>
+        
+        <br>
+        
+        <a href="${googleMapsUrl}" target="_blank" class="google-route-btn">
+            <i class="fas fa-map-marked-alt"></i>
+            التنقل عبر Google Maps
+        </a>
+    `;
+
+            // إخفاء خطوات المسار الوهمية
             routeSteps.innerHTML = '';
-            const steps = [
-                "اتجه شمالاً نحو الطريق الرئيسي",
-                "استمر لمدة 2 كم",
-                "انعطف يساراً عند الإشارة الضوئية",
-                "استمر لمدة 1.5 كم",
-                "الوجهة على يمينك"
-            ];
-            
-            steps.forEach((step, index) => {
-                const stepElement = document.createElement('div');
-                stepElement.className = 'route-step';
-                stepElement.innerHTML = `
-                    <i class="fas fa-arrow-circle-right"></i>
-                    <span>${index + 1}. ${step}</span>
-                `;
-                routeSteps.appendChild(stepElement);
-            });
-            
-            // رسم المسار على الخريطة
-            if (routeLayer) {
-                map.removeLayer(routeLayer);
-            }
-            
-            // خط وهمي للمسار
-            routeLayer = L.polyline([
-                [userLocation.lat, userLocation.lng],
-                [service.lat, service.lng]
-            ], {
-                color: '#e63946',
-                weight: 5,
-                opacity: 0.7,
-                dashArray: '10, 10'
-            }).addTo(map);
-            
-            // تكبير الخريطة على المسار
-            const bounds = L.latLngBounds([
-                [userLocation.lat, userLocation.lng],
-                [service.lat, service.lng]
-            ]);
-            map.fitBounds(bounds);
-            
-            // عرض النافذة المنبثقة
+
             modal.style.display = 'flex';
         }
-        
+
+
         // وظيفة اتصال الطوارئ
         document.getElementById('emergencyCall').addEventListener('click', () => {
             const emergencyNumber = '14'; // رقم الدفاع المدني في الجزائر
             const confirmCall = confirm(`هل تريد الاتصال برقم الطوارئ ${emergencyNumber}؟`);
-            
+
             if (confirmCall) {
                 alert(`جارٍ الاتصال برقم الطوارئ: ${emergencyNumber}\n\nيرجى الانتظار للاتصال أو الاتصال يدوياً.`);
                 // في التطبيق الحقيقي، يمكن استخدام: window.location.href = `tel:${emergencyNumber}`;
             }
         });
-        
+
         // إغلاق النافذة المنبثقة
         document.querySelector('.close-modal').addEventListener('click', () => {
             document.getElementById('routeModal').style.display = 'none';
         });
-        
-        // إغلاق النافذة المنبثقة بالنقر خارجها
+
+        // إغلاق النافذة عند الضغط خارجها
         window.addEventListener('click', (event) => {
             const modal = document.getElementById('routeModal');
             if (event.target === modal) {
                 modal.style.display = 'none';
             }
         });
-        
+
         // تهيئة الخريطة ببعض البيانات الافتراضية عند التحميل
         document.addEventListener('DOMContentLoaded', () => {
-            // استخدام موقع افتراضي (الجزائر العاصمة)
             const defaultLocation = { lat: 36.7525, lng: 3.0418 };
             const nearestServices = findNearestServices(defaultLocation.lat, defaultLocation.lng);
             addMarkersToMap(nearestServices);
         });
+
     </script>
+
+
+    <script>
+        // زر الطوارئ العائم
+
+        const toggleBtn = document.getElementById("emergencyToggle");
+        const menu = document.getElementById("emergencyMenu");
+
+        toggleBtn.addEventListener("click", () => {
+            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        });
+
+        // إغلاق القائمة عند الضغط خارجها
+        document.addEventListener("click", function (e) {
+            if (!e.target.closest(".floating-wrapper")) {
+                menu.style.display = "none";
+            }
+        });
+    </script>
+
 </body>
+
 </html>
