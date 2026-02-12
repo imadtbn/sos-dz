@@ -754,6 +754,55 @@
             background: #f8f9fa;
             transform: translateX(-4px);
         }
+
+
+        /* تأثير نبض على أرقام الطوارئ */
+.phone-number-Emergency {
+    font-weight: 700;
+    font-size: 1.3rem;
+    direction: ltr;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.number-card:hover .phone-number-Emergency {
+    color: #ff4d4d; /* لون جذاب عند المرور */
+    transform: scale(1.2); /* تكبير الرقم قليلاً */
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+}
+
+/* نبض مستمر */
+@keyframes pulseNumber {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+.number-card.important .phone-number-Emergency {
+    animation: pulseNumber 1.5s infinite;
+}
+
+
+/* تأثير نبض لأرقام الطوارئ */
+@keyframes pulse-card {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 10px 25px rgba(230, 57, 70, 0.5);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+    }
+}
+
+/* تطبيق النبض */
+.number-card.pulse {
+    animation: pulse-card 1.5s infinite;
+}
+
     </style>
 
 </head>
@@ -867,7 +916,7 @@
                     <div class="service-details">
                         <div id="militaryList">
                             <!-- سيتم ملؤها بواسطة JavaScript -->
-                            <p>اضغط على "تحديد موقعي" لعرض أقرب فرقة للدرك الوطني
+                            <p>اضغط على "تحديد موقعي" لعرض أقرب فرقة للدرك الوطني</p>
                         </div>
                     </div>
                 </div>
@@ -901,19 +950,20 @@
 
             <div class="numbers-grid">
 
-                <div class="number-card">
-                    <h4>
-                        <img src="icons/dgpc.svg" alt="logo dgpc" width="31" height="32" loading="lazy">
-                        الحماية المدنية
-                    </h4>
+<div class="number-card pulse">
+    <h4>
+        <img src="icons/dgpc.svg" alt="logo dgpc" width="31" height="32" loading="lazy">
+        الحماية المدنية
+    </h4>
 
-                    <p>
-                        <a href="tel:121" class="call-link-Emergency">
-                            <i class="fas fa-phone"></i>
-                            <span class="phone-number-Emergency">1021</span>
-                        </a>
-                    </p>
-                </div>
+    <p>
+        <a href="tel:121" class="call-link-Emergency">
+            <i class="fas fa-phone"></i>
+            <span class="phone-number-Emergency">1021</span>
+        </a>
+    </p>
+</div>
+
 
                 <div class="number-card">
                     <h4>
@@ -1320,17 +1370,22 @@
             });
 
             // الحماية المدنية
-            services.civilDefense.forEach(civil => {
+            // الحماية المدنية
+            services.civilDefense.forEach((civil, index) => {
                 const item = document.createElement('div');
                 item.className = 'service-item';
+
+                if (index === 0) {
+                    item.classList.add('nearest'); // تمييز الأقرب
+                }
+
                 item.innerHTML = `
-            <span>${civil.name}</span>
-            <span class="distance">${civil.distance.toFixed(1)} كم</span>
-        `;
+        <span>${civil.name}</span>
+        <span class="distance">${civil.distance.toFixed(1)} كم</span>
+    `;
                 item.addEventListener('click', () => showRouteToService(civil));
                 civilDefenseList.appendChild(item);
             });
-
         }
 
         // وظيفة إضافة العلامات على الخريطة
@@ -1381,8 +1436,6 @@
                     .bindPopup(`<b>${military.name}</b><br>${military.address}<br>الهاتف: ${military.phone}<br>المسافة: ${military.distance.toFixed(1)} كم`);
             });
 
-            // إضافة علامات لوحدات الحماية المدنية
-
 
             // الحماية المدنية
             services.civilDefense.forEach(civilDefense => {
@@ -1398,9 +1451,7 @@
             });
         }
 
-
         // وظيفة تحديد موقع المستخدم
-
         document.getElementById('getLocation').addEventListener('click', () => {
 
             const status = document.getElementById('locationStatus');
@@ -1650,7 +1701,6 @@
             });
         }
 
-
         // إغلاق النافذة
         document.addEventListener("click", function (e) {
 
@@ -1666,7 +1716,6 @@
 
         });
 
-
         // تهيئة الخريطة ببعض البيانات الافتراضية عند التحميل
         document.addEventListener('DOMContentLoaded', () => {
             const defaultLocation = { lat: 36.7525, lng: 3.0418 };
@@ -1675,7 +1724,6 @@
         });
 
     </script>
-
 
     <script>
         // زر الطوارئ العائم
