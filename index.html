@@ -1389,7 +1389,7 @@
                 { name: "مستشفى الدويرة", lat: 36.7222, lng: 3.2097, phone: "023 41 43 43", address: "الدويرة، الجزائر" },
                 { name: "صيدلية الأمل", lat: 36.7510, lng: 3.0550, phone: "023 41 44 44", address: "باب الواد، الجزائر" }
             ],
-            Laboratory: [
+            laboratory: [
                 { name: "مختبر النور", lat: 36.7538, lng: 3.0588, phone: "023 41 41 41", address: "الجزائر العاصمة" },
                 { name: "مختبر المستقبل", lat: 36.7550, lng: 3.0600, phone: "023 41 42 42", address: "بني مسوس، الجزائر" },
                 { name: "مختبر بومرداس", lat: 36.7222, lng: 3.2097, phone: "023 41 43 43", address: "الدويرة، الجزائر" },
@@ -1449,7 +1449,7 @@
                 military: [],
                 civilDefense: [],
                 pharmacy: [],
-                Laboratory: []
+                laboratory: []
             };
 
             // لكل نوع خدمة، نحسب المسافة ونرتبها
@@ -1477,7 +1477,7 @@
             const militaryList = document.getElementById('militaryList');
             const civilDefenseList = document.getElementById('civilDefenseList');
             const pharmacyList = document.getElementById('pharmacyList');
-            const LaboratoryList = document.getElementById('LaboratoryList');
+            const laboratoryList = document.getElementById('LaboratoryList');
 
 
             hospitalsList.innerHTML = '';
@@ -1485,7 +1485,7 @@
             militaryList.innerHTML = '';
             civilDefenseList.innerHTML = '';
             pharmacyList.innerHTML = '';
-            LaboratoryList.innerHTML = '';
+            laboratoryList.innerHTML = '';
 
             // المستشفيات
             services.hospitals.forEach((hospital, index) => {
@@ -1678,7 +1678,7 @@
                     icon: L.divIcon({
                         html: `<i class="fas fa-vial" style="color:var(--laboratory-color);font-size:20px;"></i>`,
                         iconSize: [20, 20],
-                        className: 'Laboratory-marker'
+                        className: 'laboratory-marker'
                     })
                 })
                     .addTo(map)
@@ -1842,7 +1842,7 @@
                 ...allServices.military,
                 ...allServices.civilDefense,
                 ...allServices.pharmacy,
-                ...allServices.Laboratory
+                ...allServices.laboratory
 
             ].map(s => [s.lat, s.lng]);
 
