@@ -42,7 +42,7 @@
 
     /* أمنية */
     --police-color: #0d47a1;          /* أزرق داكن رسمي */
-    --gendarmerie-color: #1b5e20;     /* أخضر عسكري */
+    --military-color: #1b5e20;     /* أخضر عسكري */
 
             --service-bg: #ffffff;
             --service-border-radius: 14px;
@@ -74,7 +74,10 @@
             border-right: 5px solid var(--civil-defense-color);
         }
 
-
+/* الدرك */
+.service-card.military .service-icon i {
+    color: var(--gendarmerie-color);
+}
 
 /* الشرطة */
 .service-card.police {
