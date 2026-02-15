@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عن الموقع - النجدة DZ </title>
+    <title>إرشادات السلامة - النجدة DZ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap">
 
@@ -114,220 +114,148 @@
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 4rem 0;
+            padding: 3rem 0;
             text-align: center;
         }
 
         .hero h2 {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
+            font-size: 1.2rem;
+            max-width: 700px;
             margin: 0 auto;
         }
 
-        /* About Sections */
-        .section-title {
-            text-align: center;
-            margin: 3rem 0 2rem;
-            font-size: 2.2rem;
-            color: var(--secondary);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--primary);
-            margin: 0.5rem auto;
-            border-radius: 2px;
-        }
-
-        .about-grid {
+        /* Guidelines Grid */
+        .guidelines-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
-            margin-bottom: 3rem;
+            padding: 3rem 0;
         }
 
-        .about-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-bottom: 5px solid transparent;
-        }
-
-        .about-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
-            border-bottom-color: var(--primary);
-        }
-
-        .about-card i {
-            font-size: 3.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .about-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--secondary);
-        }
-
-        .about-card p {
-            color: #555;
-        }
-
-        .mission-vision {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin: 3rem 0;
-        }
-
-        .mission-vision .box {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            border-right: 6px solid var(--primary);
-        }
-
-        .mission-vision .box h3 {
-            font-size: 2rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .mission-vision .box p {
-            font-size: 1.1rem;
-            color: #444;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
-            margin: 3rem 0;
-        }
-
-        .team-member {
+        .guideline-card {
             background: white;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: 0.3s;
+            transition: transform 0.3s ease, box-shadow 0.3s;
+            border-top: 6px solid var(--primary);
         }
 
-        .team-member:hover {
-            transform: scale(1.03);
+        .guideline-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
         }
 
-        .team-member img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-
-        .team-member .info {
-            padding: 1.5rem;
-        }
-
-        .team-member h4 {
-            font-size: 1.5rem;
-            color: var(--secondary);
-        }
-
-        .team-member p {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .contact-info {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 30px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            margin: 3rem 0;
-            text-align: center;
-        }
-
-        .contact-info h3 {
-            font-size: 2rem;
-            color: var(--secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-details {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
+        .card-header {
+            padding: 1.8rem 1.5rem 1rem;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.2rem;
+            gap: 15px;
         }
 
-        .contact-item i {
+        .card-header i {
+            font-size: 2.8rem;
+            color: var(--primary);
+            background: rgba(230, 57, 70, 0.1);
+            padding: 15px;
+            border-radius: 50%;
+        }
+
+        .card-header h3 {
             font-size: 1.8rem;
-            color: var(--primary);
-        }
-
-        .contact-item a {
-            color: var(--secondary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .contact-item a:hover {
-            color: var(--primary);
-        }
-
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            color: white;
-            padding: 3rem;
-            border-radius: 40px;
-            margin: 3rem 0;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-item i {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item .number {
-            font-size: 2.5rem;
             font-weight: 700;
+            color: var(--secondary);
         }
 
-        .stat-item .label {
-            font-size: 1.2rem;
+        .card-body {
+            padding: 0 1.5rem 1.8rem;
+        }
+
+        .guideline-list {
+            list-style: none;
+        }
+
+        .guideline-list li {
+            padding: 0.7rem 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .guideline-list li:last-child {
+            border-bottom: none;
+        }
+
+        .guideline-list li i {
+            color: var(--success);
+            font-size: 1.1rem;
+            margin-top: 4px;
+            min-width: 20px;
+        }
+
+        .guideline-list li span {
+            line-height: 1.5;
+        }
+
+        /* Card color variations */
+        .guideline-card.fire {
+            border-top-color: #e63946;
+        }
+
+        .guideline-card.fire .card-header i {
+            color: #e63946;
+            background: rgba(230, 57, 70, 0.1);
+        }
+
+        .guideline-card.poison {
+            border-top-color: #6a1b9a;
+        }
+
+        .guideline-card.poison .card-header i {
+            color: #6a1b9a;
+            background: rgba(106, 27, 154, 0.1);
+        }
+
+        .guideline-card.electric {
+            border-top-color: #ff9e00;
+        }
+
+        .guideline-card.electric .card-header i {
+            color: #ff9e00;
+            background: rgba(255, 158, 0, 0.1);
+        }
+
+        .guideline-card.traffic {
+            border-top-color: #1d3557;
+        }
+
+        .guideline-card.traffic .card-header i {
+            color: #1d3557;
+            background: rgba(29, 53, 87, 0.1);
+        }
+
+        .guideline-card.food {
+            border-top-color: #2e7d32;
+        }
+
+        .guideline-card.food .card-header i {
+            color: #2e7d32;
+            background: rgba(46, 125, 50, 0.1);
+        }
+
+        .guideline-card.disaster {
+            border-top-color: #d32f2f;
+        }
+
+        .guideline-card.disaster .card-header i {
+            color: #d32f2f;
+            background: rgba(211, 47, 47, 0.1);
         }
 
         /* Floating Emergency Button */
@@ -487,6 +415,8 @@
             color: #bbb;
         }
 
+
+
         /* Responsive */
         @media (max-width: 768px) {
             .header-content {
@@ -495,20 +425,15 @@
             }
 
             .hero h2 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
 
-            .mission-vision {
+            .guidelines-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .contact-details {
-                flex-direction: column;
-                align-items: center;
             }
         }
 
-        /* تحسين شعار الفوتر */
+                /* تحسين شعار الفوتر */
         .footer-logo {
             display: flex;
             flex-direction: column;
@@ -560,9 +485,11 @@
             font-weight: 700;
             margin: 0;
         }
+        
     </style>
-
 </head>
+
+
 
 <body>
 
@@ -570,13 +497,12 @@
     <header>
         <div class="container header-content">
             <div class="logo">
-                <img src="../icons/najda_icon_3.png" alt="شعار النجدة Dz" width="50" height="50" loading="lazy">
-                <h1> النجدة والطوارئ في الجزائر</h1>
+                <img src="icons/najda_icon_3.png" alt="شعار النجدة Dz" width="50" height="50" loading="lazy">
+                <h1>النجدة والطوارئ في الجزائر</h1>
             </div>
             <div class="nav-links">
                 <a href="../index.html">الرئيسية</a>
-                <a href="guide.html">إرشادات السلامة</a>
-                <a href="about.html" class="active">عن الموقع</a>
+                <a href="guide.html" class="active">إرشادات السلامة</a>
             </div>
         </div>
     </header>
@@ -584,132 +510,143 @@
     <!-- Hero -->
     <section class="hero">
         <div class="container">
-            <h2>عن موقع الطوارئ والنجدة</h2>
-            <p>نحو مجتمع آمن ومستعد لمواجهة الطوارئ</p>
+            <h2>إرشادات السلامة والوقاية</h2>
+            <p>نصائح وإرشادات هامة للتعامل مع حالات الطوارئ المختلفة، احمِ نفسك وأسرتك بالمعرفة الصحيحة.</p>
         </div>
     </section>
 
-    <!-- About Content -->
+    <!-- Guidelines Grid -->
     <div class="container">
+        <div class="guidelines-grid">
 
-        <!-- من نحن -->
-        <div class="mission-vision">
-            <div class="box">
-                <h3><i class="fas fa-info-circle"></i> من نحن</h3>
-                <p>موقع النجدة والطوارئ في الجزائر هو مبادرة وطنية تهدف إلى توفير معلومات دقيقة وفورية عن أقرب خدمات
-                    الطوارئ للمواطنين في جميع أنحاء الوطن. نقدم بيانات شاملة عن المستشفيات، مراكز الشرطة، وحدات الحماية
-                    المدنية، الدرك الوطني، الصيدليات، والمخابر البيولوجية، مع إمكانية تحديد الموقع وعرض المسارات.</p>
+            <!-- الحرائق -->
+            <div class="guideline-card fire">
+                <div class="card-header">
+                    <i class="fas fa-fire"></i>
+                    <h3>الحرائق</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="guideline-list">
+                        <li><i class="fas fa-check-circle"></i> <span>حاول إطفاء الحريق الصغير باستخدام طفاية حريق
+                                مناسبة، وإن لم تستطع فغادر المكان فوراً.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>أغلق الأبواب والنوافذ خلفك لإبطاء انتشار
+                                الحريق.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>إذا اشتعلت ملابسك، توقف، انبطح على الأرض، وتدحرج
+                                لإخماد النيران.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>لا تستخدم المصاعد، استخدم السلالم.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>اتصل بالحماية المدنية على الرقم 1021 فور
+                                خروجك.</span></li>
+                    </ul>
+                </div>
             </div>
-            <div class="box">
-                <h3><i class="fas fa-bullseye"></i> رؤيتنا</h3>
-                <p>أن نكون المرجع الأول والأسرع للمواطن الجزائري في حالات الطوارئ، والمساهمة في تقليل زمن الاستجابة
-                    وزيادة الوعي المجتمعي حول كيفية التعامل مع الحوادث والكوارث.</p>
-            </div>
-        </div>
 
-        <!-- أهدافنا -->
-        <h2 class="section-title">أهدافنا</h2>
-        <div class="about-grid">
-            <div class="about-card">
-                <i class="fas fa-map-marked-alt"></i>
-                <h3>الدقة في الموقع</h3>
-                <p>نستخدم تقنيات GPS لتحديد مواقع الخدمات بدقة عالية، مع إمكانية عرض المسارات المثلى.</p>
+            <!-- التسممات -->
+            <div class="guideline-card poison">
+                <div class="card-header">
+                    <i class="fas fa-skull-crossbones"></i>
+                    <h3>التسممات</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="guideline-list">
+                        <li><i class="fas fa-check-circle"></i> <span>إذا كان المصاب واعياً، حاول التعرف على نوع المادة
+                                المسممة.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>لا تحرض على التقيؤ إلا إذا نصحك بذلك
+                                الطبيب.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>إذا كانت المادة كاوية (مثل المنظفات)، لا تعطي
+                                المصاب أي شيء عن طريق الفم.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>اتصل بالإسعاف فوراً وأخبرهم بنوع المادة إن
+                                أمكن.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>احتفظ بعينة من المادة المسممة أو قيء المصاب
+                                لتحليلها.</span></li>
+                    </ul>
+                </div>
             </div>
-            <div class="about-card">
-                <i class="fas fa-phone-alt"></i>
-                <h3>أرقام الاتصال</h3>
-                <p>نوفر أرقام هواتف محدثة لجميع الخدمات لتتمكن من التواصل المباشر في الوقت المناسب.</p>
-            </div>
-            <div class="about-card">
-                <i class="fas fa-book-open"></i>
-                <h3>إرشادات السلامة</h3>
-                <p>نقدم نصائح وإرشادات عملية للتعامل مع حالات الطوارئ المختلفة، مستمدة من مصادر موثوقة.</p>
-            </div>
-            <div class="about-card">
-                <i class="fas fa-hand-holding-heart"></i>
-                <h3>خدمة مجتمعية</h3>
-                <p>مشروع تطوعي يهدف إلى خدمة المواطن وتعزيز ثقافة الوقاية والاستعداد.</p>
-            </div>
-        </div>
 
-        <!-- إحصائيات سريعة -->
-        <div class="stats">
-            <div class="stat-item">
-                <i class="fas fa-ambulance"></i>
-                <div class="number">+200</div>
-                <div class="label">خدمة مسجلة</div>
+            <!-- صاعقة كهربائية -->
+            <div class="guideline-card electric">
+                <div class="card-header">
+                    <i class="fas fa-bolt"></i>
+                    <h3>الصاعقة الكهربائية</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="guideline-list">
+                        <li><i class="fas fa-check-circle"></i> <span>افصل التيار الكهربائي فوراً قبل لمس المصاب.</span>
+                        </li>
+                        <li><i class="fas fa-check-circle"></i> <span>إذا لم تستطع فصل التيار، استخدم أداة غير موصلة
+                                (مثل عصا خشبية) لابعاد المصاب عن المصدر.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>تحقق من تنفس المصاب وابدأ الإنعاش القلبي الرئوي
+                                إذا لزم الأمر.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>اطلب المساعدة الطبية فوراً حتى لو بدا المصاب بخير،
+                                فقد تكون هناك حروق داخلية.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>لا تضع الثلج أو المراهم على الحروق
+                                الكهربائية.</span></li>
+                    </ul>
+                </div>
             </div>
-            <div class="stat-item">
-                <i class="fas fa-users"></i>
-                <div class="number">+50K</div>
-                <div class="label">مستخدم شهرياً</div>
-            </div>
-            <div class="stat-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <div class="number">48</div>
-                <div class="label">ولاية مغطاة</div>
-            </div>
-            <div class="stat-item">
-                <i class="fas fa-heartbeat"></i>
-                <div class="number">+1000</div>
-                <div class="label">حياة أنقذت</div>
-            </div>
-        </div>
 
-        <!-- الفريق -->
-        <h2 class="section-title">فريق العمل</h2>
-        <div class="team-grid">
-            <div class="team-member">
-                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="أحمد بن علي">
-                <div class="info">
-                    <h4>أحمد بن علي</h4>
-                    <p>مطور رئيسي</p>
+            <!-- حوادث المرور -->
+            <div class="guideline-card traffic">
+                <div class="card-header">
+                    <i class="fas fa-car-crash"></i>
+                    <h3>حوادث المرور</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="guideline-list">
+                        <li><i class="fas fa-check-circle"></i> <span>تأكد من سلامتك أولاً، ثم اتصل بالإسعاف
+                                والشرطة.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>لا تحرك المصابين إلا إذا كانوا في خطر داهم (مثل
+                                حريق).</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>ضع مثلث التحذير على بعد مناسب لتحذير السيارات
+                                الأخرى.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>إذا كان المصاب لا يتنفس، ابدأ الإنعاش القلبي
+                                الرئوي إذا كنت مدرباً.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>لا تقدم أي سوائل للمصابين.</span></li>
+                    </ul>
                 </div>
             </div>
-            <div class="team-member">
-                <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="سارة محمد">
-                <div class="info">
-                    <h4>سارة محمد</h4>
-                    <p>مصممة واجهات</p>
-                </div>
-            </div>
-            <div class="team-member">
-                <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="يوسف بن سعيد">
-                <div class="info">
-                    <h4>يوسف بن سعيد</h4>
-                    <p>محلل بيانات</p>
-                </div>
-            </div>
-            <div class="team-member">
-                <img src="https://randomuser.me/api/portraits/women/4.jpg" alt="فاطمة الزهراء">
-                <div class="info">
-                    <h4>فاطمة الزهراء</h4>
-                    <p>مسؤولة محتوى</p>
-                </div>
-            </div>
-        </div>
 
-        <!-- معلومات الاتصال -->
-        <div class="contact-info">
-            <h3>تواصل معنا</h3>
-            <div class="contact-details">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:info@dznajda.dz">info@dznajda.dz</a>
+            <!-- التسممات الغذائية -->
+            <div class="guideline-card food">
+                <div class="card-header">
+                    <i class="fas fa-utensils"></i>
+                    <h3>التسممات الغذائية</h3>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <a href="tel:+21300000000">+213 (0)00 00 00 00</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-facebook"></i>
-                    <a href="#" target="_blank">/dznajda</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-twitter"></i>
-                    <a href="#" target="_blank">@dznajda</a>
+                <div class="card-body">
+                    <ul class="guideline-list">
+                        <li><i class="fas fa-check-circle"></i> <span>اشرب الكثير من السوائل لمنع الجفاف.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>تجنب الأطعمة الصلبة حتى تتحسن الأعراض.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>إذا كان القيء أو الإسهال شديداً، أو ظهرت دم في
+                                القيء أو البراز، توجه للمستشفى فوراً.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>احتفظ بعينة من الطعام المشتبه به إن أمكن.</span>
+                        </li>
+                        <li><i class="fas fa-check-circle"></i> <span>لا تتناول أدوية مضادة للإسهال دون استشارة
+                                طبية.</span></li>
+                    </ul>
                 </div>
             </div>
+
+            <!-- الكوارث الطبيعية -->
+            <div class="guideline-card disaster">
+                <div class="card-header">
+                    <i class="fas fa-house-flood"></i>
+                    <h3>الكوارث الطبيعية</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="guideline-list">
+                        <li><i class="fas fa-check-circle"></i> <span>في الزلازل: اختبئ تحت طاولة متينة، ابتعد عن
+                                النوافذ والأثاث الثقيل.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>في الفيضانات: انتقل إلى المناطق المرتفعة، لا تحاول
+                                عبور المياه الجارية.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>في العواصف: ابق في المنزل، ابتعد عن النوافذ، افصل
+                                الأجهزة الكهربائية.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>جهز حقيبة طوارئ تحتوي على ماء، طعام جاف، مصباح،
+                                بطاريات، وأدوية.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>اتبع تعليمات السلطات المحلية ولا تتردد في الإخلاء
+                                إذا طُلب منك.</span></li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -719,7 +656,7 @@
             <i class="fas fa-phone"></i>
         </button>
         <div id="emergencyMenu" class="emergency-menu">
-            <a href="tel:1021"><img src="../icons/dgpc.svg" alt="dgpc" loading="lazy"> الحماية المدنية</a>
+            <a href="tel:1021"><img src="icons/dgpc.svg" alt="dgpc" loading="lazy"> الحماية المدنية</a>
             <a href="tel:1548"><img src="icons/dgsn.png" alt="dgsn" loading="lazy"> الشرطة</a>
             <a href="tel:1055"><img src="icons/CGN.jpg" alt="cgn" loading="lazy"> الدرك الوطني</a>
             <a href="tel:1054"><img src="icons/CFN.png" alt="cfn" loading="lazy"> حرس السواحل</a>
@@ -788,9 +725,7 @@
         <button id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
     </footer>
 
-
     <!-- JavaScript -->
-
     <script src="../javascript/java-btn-pst.js"></script>
 
     <script>

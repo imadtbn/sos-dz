@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مختبرات التحاليل البيولوجية - الطوارئ والنجدة</title>
+    <title>مختبرات التحاليل البيولوجية - النجدة DZ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap">
+
+    <!-- أيقونة الموقع -->
+    <link rel="icon" href="../icons/najda_icon_1.png" alt="icon" type="image/png" loading="lazy" class="welcome-logo">
+
     <style>
         * {
             margin: 0;
@@ -13,6 +18,7 @@
             box-sizing: border-box;
             font-family: 'Cairo', sans-serif;
         }
+
         :root {
             --primary: #e63946;
             --secondary: #1d3557;
@@ -20,50 +26,59 @@
             --light: #f1faee;
             --warning: #ff9e00;
             --success: #2a9d8f;
-            --laboratory-color: #6a1b9a; /* بنفسجي علمي */
+            --laboratory-color: #6a1b9a;
+            /* بنفسجي علمي */
         }
+
         body {
             background-color: #f5f7fa;
             color: #333;
             line-height: 1.6;
             padding-top: 78px;
         }
+
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
+
         /* Header */
         header {
             background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
             color: white;
             padding: 1rem 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             position: fixed;
             top: 0;
             right: 0;
             left: 0;
             z-index: 1000;
         }
+
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
         .logo {
             display: flex;
             align-items: center;
             gap: 10px;
         }
+
         .logo i {
             font-size: 2.2rem;
             color: var(--primary);
         }
+
         .logo h1 {
             font-size: 1.8rem;
             font-weight: 700;
         }
+
         .back-home {
             display: inline-flex;
             align-items: center;
@@ -75,26 +90,36 @@
             text-decoration: none;
             font-weight: 600;
         }
+
         .back-home:hover {
             background: var(--primary);
             color: white;
         }
+
         /* Hero section */
         .hero {
-            background: linear-gradient(rgba(29,53,87,0.9), rgba(106,27,154,0.8)), url('https://images.unsplash.com/photo-1579154204601-01588f410e2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background:
+                linear-gradient(to bottom,
+                    rgba(29, 53, 87, 0.3),
+                    rgba(29, 53, 87, 0.7)),
+                url('../images/hero-laboratories.jpg');
+
             background-size: cover;
             background-position: center;
             color: white;
             padding: 3rem 0;
             text-align: center;
         }
+
         .hero h2 {
             font-size: 2.2rem;
             margin-bottom: 1rem;
         }
+
         .hero p {
             font-size: 1.1rem;
         }
+
         .location-access {
             display: flex;
             justify-content: center;
@@ -102,6 +127,7 @@
             margin: 2rem 0 1rem;
             flex-wrap: wrap;
         }
+
         .btn {
             padding: 12px 24px;
             border: none;
@@ -115,10 +141,12 @@
             color: white;
             transition: 0.3s;
         }
+
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
+
         /* قائمة المخابر */
         .laboratories-grid {
             display: grid;
@@ -126,19 +154,22 @@
             gap: 25px;
             margin: 40px 0;
         }
+
         .laboratory-card {
             background: white;
             border-radius: 16px;
             padding: 1.5rem;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
             transition: 0.3s;
             border-right: 6px solid var(--laboratory-color);
             position: relative;
         }
+
         .laboratory-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
+
         .laboratory-icon {
             width: 60px;
             height: 60px;
@@ -151,12 +182,14 @@
             font-size: 2rem;
             margin-bottom: 15px;
         }
+
         .laboratory-name {
             font-size: 1.4rem;
             font-weight: 700;
             color: var(--secondary);
             margin-bottom: 10px;
         }
+
         .laboratory-detail {
             display: flex;
             align-items: center;
@@ -164,10 +197,12 @@
             margin: 8px 0;
             color: #555;
         }
+
         .laboratory-detail i {
             width: 20px;
             color: var(--laboratory-color);
         }
+
         .distance-badge {
             background: var(--success);
             color: white;
@@ -177,6 +212,7 @@
             display: inline-block;
             margin: 10px 0;
         }
+
         .google-route-btn {
             display: block;
             background: #1a73e8;
@@ -189,9 +225,11 @@
             margin-top: 15px;
             transition: 0.3s;
         }
+
         .google-route-btn:hover {
             background: #1558b0;
         }
+
         .spinner {
             border: 5px solid #f3f3f3;
             border-top: 5px solid var(--laboratory-color);
@@ -201,18 +239,176 @@
             animation: spin 1s linear infinite;
             margin: 30px auto;
         }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 1rem 0; }
-        .footer-links a { color: #ddd; text-decoration: none; }
-        .footer-links a:hover { color: white; }
-        footer { background: var(--secondary); color: white; padding: 2rem 0; margin-top: 3rem; text-align: center; }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Footer */
+        /* ===== Footer Modern ===== */
+
+        footer {
+            background: linear-gradient(135deg, var(--secondary), #14213d);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+        }
+
+        /* إزالة التوسيط العمودي القديم */
+        .footer-content {
+            width: 100%;
+        }
+
+        /* توزيع الأعمدة */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            text-align: right;
+        }
+
+        /* عناوين الأعمدة */
+        .footer-col h4 {
+            margin-bottom: 18px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffffff;
+        }
+
+        /* القوائم */
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        /* الروابط */
+        .footer-col ul li a {
+            color: #ccc;
+            text-decoration: none;
+            /* منع التسطير نهائياً */
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+        }
+
+        /* تأثير احترافي */
+        .footer-col ul li a:hover {
+            color: #ffffff;
+            transform: translateX(-8px);
+        }
+
+        /* تأثير أيقونة */
+        .footer-col ul li a i {
+            transition: 0.3s ease;
+        }
+
+        .footer-col ul li a:hover i {
+            color: #e63946;
+            transform: scale(1.25);
+        }
+
+        /* خط سفلي متحرك احترافي */
+        .footer-col ul li a::after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            right: 0;
+            width: 0%;
+            height: 2px;
+            background: #e63946;
+            transition: 0.3s ease;
+        }
+
+        .footer-col ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* الجزء السفلي */
+        .footer-bottom {
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #bbb;
+        }
+
+                /* تحسين شعار الفوتر */
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-logo img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 50%;
+            background: white;
+            padding: 10px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .footer-logo img:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+        }
+
+        .footer-logo h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            /* المسافة بين الصورة والنص */
+        }
+
+        .logo img {
+            display: block;
+            width: 50px;
+            /* حجم الشعار */
+            height: 50px;
+            border-radius: 50%;
+            /* يجعل الصورة دائرية */
+            object-fit: cover;
+            /* لضمان عدم تشويه الصورة داخل الدائرة */
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+        }
     </style>
+
 </head>
+
 <body>
     <header>
         <div class="container header-content">
             <div class="logo">
-                <i class="fas fa-crosshairs"></i>
+                <img src="../icons/najda_icon_3.png" alt="شعار النجدة Dz" width="50" height="50" loading="lazy">
                 <h1>مختبرات التحاليل البيولوجية</h1>
             </div>
             <a href="../index.html" class="back-home"><i class="fas fa-arrow-right"></i> العودة</a>
@@ -237,24 +433,70 @@
         </div>
     </div>
 
+
+    <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="logo">
-                <i class="fas fa-crosshairs"></i>
-                <h2>الطوارئ والنجدة في الجزائر</h2>
+        <div class="container footer-content">
+            <div class="footer-grid">
+
+                <!-- تعريف -->
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <h2>النجدة Dz</h2>
+                        <p>منصة وطنية لتحديد أقرب خدمات النجدة والطوارئ في الجزائر بدقة وسرعة.</p>
+                        <img src="../icons/najda_icon_11.png" alt="شعار النجدة Dz" loading="lazy">
+                    </div>
+
+                </div>
+
+                <!-- خدمات الطوارئ -->
+                <div class="footer-col">
+                    <h4><i class="fas fa-ambulance"></i> خدمات النجدة والطوارئ</h4>
+                    <ul>
+                        <li><a href="hospitals.html"><i class="fas fa-hospital"></i> المستشفيات</a></li>
+                        <li><a href="police.html"><i class="fas fa-shield-alt"></i> مراكز الشرطة</a></li>
+                        <li><a href="gendarmerie.html"><i class="fas fa-star"></i> الدرك الوطني</a></li>
+                        <li><a href="protectioncivil.html"><i class="fas fa-fire-extinguisher"></i> الحماية
+                                المدنية</a></li>
+                    </ul>
+                </div>
+
+                <!-- خدمات صحية -->
+                <div class="footer-col">
+                    <h4><i class="fas fa-heartbeat"></i> خدمات صحية</h4>
+                    <ul>
+                        <li><a href="pharmacies.html"><i class="fas fa-prescription-bottle-alt"></i> الصيدليات</a>
+                        </li>
+                        <li><a href="laboratories.html"><i class="fas fa-vials"></i> مخابر التحاليل البيولوجية</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- روابط مهمة -->
+                <div class="footer-col">
+                    <h4><i class="fas fa-link"></i> روابط مهمة</h4>
+                    <ul>
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> عن الموقع</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+                        <li><a href="privacy.html"><i class="fas fa-user-shield"></i> سياسة الخصوصية</a>
+                        </li>
+                        <li><a href="guide.html"><i class="fas fa-book"></i> الإرشادات</a></li>
+                    </ul>
+                </div>
+
             </div>
-            <p>خدمة وطنية للمساعدة السريعة</p>
-            <div class="footer-links">
-                <a href="../index.html">الرئيسية</a>
-                <a href="guidelines.html">إرشادات</a>
-                <a href="pharmacies.html">صيدليات</a>
-                <a href="laboratories.html">مخابر</a>
-                <a href="civil-protection.html">الحماية المدنية</a>
-                <a href="Contact.html">اتصل بنا</a>
+
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة &copy; 2026</p>
             </div>
-            <p>جميع الحقوق محفوظة &copy; 2025</p>
+
         </div>
+
+        <!-- زر الرجوع للأعلى -->
+        <button id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
     </footer>
+
+    <script src="../javascript/java-btn-pst.js"></script>
 
     <script>
         // بيانات تجريبية للمخابر (يمكن استبدالها ب API حقيقي)
@@ -276,10 +518,10 @@
             const R = 6371; // km
             const dLat = (lat2 - lat1) * Math.PI / 180;
             const dLon = (lon2 - lon1) * Math.PI / 180;
-            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-                      Math.sin(dLon/2) * Math.sin(dLon/2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             return R * c;
         }
 
@@ -300,7 +542,7 @@
             const withDistance = laboratoriesData.map(lab => {
                 const dist = calculateDistance(userLat, userLon, lab.lat, lab.lon);
                 return { ...lab, distance: dist };
-            }).sort((a,b) => a.distance - b.distance);
+            }).sort((a, b) => a.distance - b.distance);
 
             let html = '';
             withDistance.forEach(lab => {
@@ -325,7 +567,7 @@
         }
 
         // تحديد الموقع الجغرافي
-        document.getElementById('getLocation').addEventListener('click', function() {
+        document.getElementById('getLocation').addEventListener('click', function () {
             const status = document.getElementById('locationStatus');
             if (!navigator.geolocation) {
                 status.innerText = 'المتصفح لا يدعم تحديد الموقع';
@@ -350,4 +592,5 @@
         displayLaboratories();
     </script>
 </body>
+
 </html>
