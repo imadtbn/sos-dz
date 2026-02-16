@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأطباء الخواص - النجدة DZ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap">
+    <link rel="icon" href="../icons/najda_icon_1.png" type="image/png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        :root {
+            --primary: #e63946;
+            --secondary: #1d3557;
+            --accent: #457b9d;
+            --light: #f1faee;
+            --warning: #ff9e00;
+            --success: #2a9d8f;
+            --doctor-color: #2a9d8f;
+            /* لون الأطباء (أخضر/أزرق) */
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding-top: 78px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            color: var(--secondary);
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-home:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to bottom,
+                    rgba(29, 53, 87, 0.5),
+                    rgba(29, 53, 87, 0.8)),
+                url('../images/hero-doctors.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+        }
+
+        .location-access {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 2rem 0 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--doctor-color);
+            color: white;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* فلترة الاختصاصات */
+        .filter-section {
+            margin: 30px 0 20px;
+            text-align: center;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border: 2px solid var(--doctor-color);
+            background: transparent;
+            color: var(--doctor-color);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .filter-btn.active {
+            background: var(--doctor-color);
+            color: white;
+        }
+
+        .filter-btn:hover {
+            background: var(--doctor-color);
+            color: white;
+        }
+
+        /* قائمة الأطباء */
+        .doctor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .doctor-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            transition: 0.3s;
+            border-right: 6px solid var(--doctor-color);
+            position: relative;
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .doctor-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .doctor-avatar {
+            width: 70px;
+            height: 70px;
+            background: var(--doctor-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .doctor-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .doctor-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .doctor-specialty {
+            background: var(--doctor-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        .doctor-detail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 8px 0;
+            color: #555;
+        }
+
+        .doctor-detail i {
+            width: 20px;
+            color: var(--doctor-color);
+        }
+
+        .work-days {
+            background: #e9f5f2;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .work-days i {
+            color: var(--doctor-color);
+        }
+
+        .distance-badge {
+            background: var(--success);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin: 10px 0;
+        }
+
+        .google-route-btn {
+            display: block;
+            background: #1a73e8;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .google-route-btn:hover {
+            background: #1558b0;
+        }
+
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--doctor-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 30px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--secondary), #14213d);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            width: 100%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            text-align: right;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 18px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffffff;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #ccc;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .footer-col ul li a:hover {
+            color: #ffffff;
+            transform: translateX(-8px);
+        }
+
+        .footer-col ul li a i {
+            transition: 0.3s ease;
+        }
+
+        .footer-col ul li a:hover i {
+            color: #e63946;
+            transform: scale(1.25);
+        }
+
+        .footer-col ul li a::after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            right: 0;
+            width: 0%;
+            height: 2px;
+            background: #e63946;
+            transition: 0.3s ease;
+        }
+
+        .footer-col ul li a:hover::after {
+            width: 100%;
+        }
+
+        .footer-bottom {
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #bbb;
+        }
+
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-logo img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 50%;
+            background: white;
+            padding: 10px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .footer-logo img:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+        }
+
+        .footer-logo h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="../icons/doctor-icon.png" alt="شعار الأطباء" onerror="this.src='https://via.placeholder.com/50/2a9d8f/ffffff?text=Dr'">
+                <h1>الأطباء الخواص</h1>
+            </div>
+            <a href="../index.html" class="back-home"><i class="fas fa-arrow-right"></i> العودة</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>أقرب الأطباء الخواص إليك</h2>
+            <p>ابحث عن طبيب حسب الاختصاص واعثر على أقرب عيادة</p>
+            <div class="location-access">
+                <button id="getLocation" class="btn"><i class="fas fa-map-marker-alt"></i> تحديد موقعي</button>
+            </div>
+            <div id="locationStatus" style="color: #ffdddd;"></div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- أزرار التصفية حسب الاختصاص -->
+        <div class="filter-section">
+            <div class="filter-buttons" id="filterButtons">
+                <!-- يتم تعبئتها بواسطة JavaScript -->
+            </div>
+        </div>
+
+        <div id="doctorList" class="doctor-grid">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <h2>النجدة Dz</h2>
+                        <p>منصة وطنية لتحديد أقرب خدمات النجدة والطوارئ في الجزائر بدقة وسرعة.</p>
+                        <img src="../icons/najda_icon_11.png" alt="شعار النجدة Dz" loading="lazy">
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4><i class="fas fa-ambulance"></i> خدمات النجدة والطوارئ</h4>
+                    <ul>
+                        <li><a href="hospitals.html"><i class="fas fa-hospital"></i> المستشفيات</a></li>
+                        <li><a href="police.html"><i class="fas fa-shield-alt"></i> مراكز الشرطة</a></li>
+                        <li><a href="gendarmerie.html"><i class="fas fa-star"></i> الدرك الوطني</a></li>
+                        <li><a href="protectioncivil.html"><i class="fas fa-fire-extinguisher"></i> الحماية المدنية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4><i class="fas fa-heartbeat"></i> خدمات صحية</h4>
+                    <ul>
+                        <li><a href="pharmacies.html"><i class="fas fa-prescription-bottle-alt"></i> الصيدليات</a></li>
+                        <li><a href="laboratories.html"><i class="fas fa-vials"></i> مخابر التحاليل البيولوجية</a></li>
+                        <li><a href="doctors.html"><i class="fas fa-user-md"></i> الأطباء الخواص</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4><i class="fas fa-link"></i> روابط مهمة</h4>
+                    <ul>
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> عن الموقع</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+                        <li><a href="privacy.html"><i class="fas fa-user-shield"></i> سياسة الخصوصية</a></li>
+                        <li><a href="guide.html"><i class="fas fa-book"></i> الإرشادات</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة &copy; 2026</p>
+            </div>
+        </div>
+        <button id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+    </footer>
+
+    <script>
+        // بيانات تجريبية للأطباء الخواص
+        const doctorsData = [
+            { firstName: "محمد", lastName: "بن علي", specialty: "طب الأسنان", phone: "0550123456", wilaya: "الجزائر", baladia: "باش جراح", address: "شارع ديدوش مراد", lat: 36.7538, lon: 3.0588, workDays: "الأحد - الخميس 9ص-5م", image: null },
+            { firstName: "فاطمة", lastName: "زهراء", specialty: "طب الأعصاب", phone: "0550987654", wilaya: "وهران", baladia: "السانية", address: "حي الأطباء", lat: 35.6971, lon: -0.6308, workDays: "الأحد - الأربعاء 10ص-6م", image: null },
+            { firstName: "عبد الرحمن", lastName: "بوزيد", specialty: "الطب الداخلي", phone: "0550112233", wilaya: "قسنطينة", baladia: "الخروب", address: "شارع 1 نوفمبر", lat: 36.3650, lon: 6.6147, workDays: "السبت - الخميس 8ص-4م", image: null },
+            { firstName: "سلمى", lastName: "حساني", specialty: "طب الأطفال", phone: "0550445566", wilaya: "عنابة", baladia: "عنابة", address: "شارع العربي بن مهيدي", lat: 36.9000, lon: 7.7667, workDays: "الأحد - الثلاثاء 9ص-3م", image: null },
+            { firstName: "لخضر", lastName: "منصوري", specialty: "الجراحة العامة", phone: "0550778899", wilaya: "البليدة", baladia: "بوفاريك", address: "شارع فلسطين", lat: 36.4700, lon: 2.8330, workDays: "السبت - الأربعاء 10ص-7م", image: null },
+            { firstName: "نورة", lastName: "بكوش", specialty: "طب النساء والتوليد", phone: "0550334455", wilaya: "سطيف", baladia: "سطيف", address: "شارع العقيد عميروش", lat: 36.1900, lon: 5.4100, workDays: "الأحد - الخميس 9ص-5م", image: null },
+            { firstName: "كمال", lastName: "حمدوش", specialty: "طب العيون", phone: "0550667788", wilaya: "تيزي وزو", baladia: "تيزي وزو", address: "شارع الإخوة بوعلام", lat: 36.7169, lon: 4.0497, workDays: "الاثنين - الجمعة 8ص-2م", image: null },
+            { firstName: "نادية", lastName: "شاوي", specialty: "طب الجلدية", phone: "0550990011", wilaya: "بجاية", baladia: "بجاية", address: "حي الياسمين", lat: 36.7525, lon: 5.0556, workDays: "السبت - الأربعاء 9ص-4م", image: null },
+            { firstName: "جمال", lastName: "عياشي", specialty: "طب الأنف والأذن والحنجرة", phone: "0550223344", wilaya: "تلمسان", baladia: "تلمسان", address: "شارع الإمام", lat: 34.8828, lon: -1.3167, workDays: "الأحد - الخميس 10ص-6م", image: null },
+            { firstName: "وهيبة", lastName: "عبدلي", specialty: "طب الأعصاب", phone: "0550556677", wilaya: "باتنة", baladia: "باتنة", address: "شارع الإستقلال", lat: 35.5559, lon: 6.1741, workDays: "السبت - الأربعاء 9ص-3م", image: null },
+            { firstName: "إبراهيم", lastName: "بوجمعة", specialty: "طب الأسنان", phone: "0550889900", wilaya: "الشلف", baladia: "الشلف", address: "شارع محمد خميستي", lat: 36.1653, lon: 1.3345, workDays: "الأحد - الخميس 8ص-2م", image: null },
+            { firstName: "كريمة", lastName: "زروقي", specialty: "الطب الداخلي", phone: "0550123789", wilaya: "المسيلة", baladia: "المسيلة", address: "حي 5 جويلية", lat: 35.7058, lon: 4.5419, workDays: "السبت - الأربعاء 10ص-5م", image: null },
+            { firstName: "علي", lastName: "مزياني", specialty: "طب الأطفال", phone: "0550456789", wilaya: "برج بوعريريج", baladia: "برج بوعريريج", address: "شارع الإخوة مرسلي", lat: 36.0732, lon: 4.7611, workDays: "الأحد - الخميس 9ص-4م", image: null },
+            { firstName: "نوال", lastName: "بلخير", specialty: "الجراحة العامة", phone: "0550891234", wilaya: "بومرداس", baladia: "بومرداس", address: "شارع 20 أوت", lat: 36.7667, lon: 3.4667, workDays: "الاثنين - الجمعة 10ص-6م", image: null },
+            { firstName: "مصطفى", lastName: "لعجال", specialty: "طب النساء والتوليد", phone: "0550234567", wilaya: "المدية", baladia: "المدية", address: "شارع أحمد زبانة", lat: 36.2642, lon: 2.7539, workDays: "السبت - الأربعاء 9ص-5م", image: null },
+            { firstName: "جميلة", lastName: "بوقصة", specialty: "طب العيون", phone: "0550678901", wilaya: "تيارت", baladia: "تيارت", address: "شارع الأمير عبد القادر", lat: 35.3710, lon: 1.3160, workDays: "الأحد - الخميس 8ص-2م", image: null },
+            { firstName: "مراد", lastName: "بوبكر", specialty: "طب الجلدية", phone: "0550345678", wilaya: "سيدي بلعباس", baladia: "سيدي بلعباس", address: "شارع فلسطين", lat: 35.1900, lon: -0.6300, workDays: "السبت - الأربعاء 9ص-3م", image: null },
+            { firstName: "نادية", lastName: "قداش", specialty: "طب الأسنان", phone: "0550789012", wilaya: "مستغانم", baladia: "مستغانم", address: "شارع بن بولعيد", lat: 35.9311, lon: 0.0892, workDays: "الأحد - الخميس 9ص-5م", image: null },
+            { firstName: "عبد القادر", lastName: "سعدي", specialty: "طب الأعصاب", phone: "0550456123", wilaya: "ورقلة", baladia: "ورقلة", address: "حي النصر", lat: 31.9556, lon: 5.3411, workDays: "السبت - الأربعاء 8ص-4م", image: null },
+            { firstName: "فضيلة", lastName: "بوعلام", specialty: "الطب الداخلي", phone: "0550893456", wilaya: "بشار", baladia: "بشار", address: "شارع 1 نوفمبر", lat: 31.6167, lon: -2.2167, workDays: "الأحد - الخميس 10ص-6م", image: null },
+            // يمكن إضافة المزيد من الأطباء حتى 50...
+        ];
+
+        // دمج الاسم الأول واللقب في الاسم الكامل للعرض
+        const doctors = doctorsData.map(doc => ({
+            ...doc,
+            fullName: `${doc.firstName} ${doc.lastName}`,
+            // إنشاء أيقونة افتراضية بالحرف الأول من الاسم إذا لم توجد صورة
+            avatarLetter: doc.firstName.charAt(0)
+        }));
+
+        let userLat = null, userLon = null;
+        let currentFilter = 'الكل';
+
+        // استخراج الاختصاصات الفريدة
+        const specialties = ['الكل', ...new Set(doctors.map(d => d.specialty))];
+
+        // دالة حساب المسافة (هافرسين)
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
+
+        // عرض أزرار التصفية
+        function renderFilterButtons() {
+            const container = document.getElementById('filterButtons');
+            container.innerHTML = '';
+            specialties.forEach(spec => {
+                const btn = document.createElement('button');
+                btn.className = `filter-btn ${spec === currentFilter ? 'active' : ''}`;
+                btn.innerText = spec;
+                btn.addEventListener('click', () => {
+                    currentFilter = spec;
+                    // تحديث الحالة النشطة
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    displayDoctors();
+                });
+                container.appendChild(btn);
+            });
+        }
+
+        // عرض الأطباء
+        function displayDoctors() {
+            const container = document.getElementById('doctorList');
+            let filtered = doctors;
+            if (currentFilter !== 'الكل') {
+                filtered = doctors.filter(d => d.specialty === currentFilter);
+            }
+
+            if (!userLat || !userLon) {
+                // عرض بدون ترتيب
+                let html = '';
+                filtered.forEach(d => {
+                    html += renderDoctorCard(d, null);
+                });
+                container.innerHTML = html || '<p style="text-align:center; color:#999;">لا يوجد أطباء في هذا الاختصاص</p>';
+                return;
+            }
+
+            // حساب المسافة والترتيب
+            const withDistance = filtered.map(d => {
+                const dist = calculateDistance(userLat, userLon, d.lat, d.lon);
+                return { ...d, distance: dist };
+            }).sort((a, b) => a.distance - b.distance);
+
+            let html = '';
+            withDistance.forEach(d => {
+                html += renderDoctorCard(d, d.distance.toFixed(1));
+            });
+            container.innerHTML = html || '<p style="text-align:center; color:#999;">لا يوجد أطباء في هذا الاختصاص</p>';
+        }
+
+        function renderDoctorCard(doc, distance) {
+            const distText = distance ? `<div class="distance-badge"><i class="fas fa-location-dot"></i> ${distance} كم</div>` : '';
+            const googleMapsLink = `https://www.google.com/maps/dir/?api=1&destination=${doc.lat},${doc.lon}`;
+            // صورة شخصية (إذا لم توجد نستخدم أيقونة)
+            const avatarHtml = doc.image ?
+                `<img src="${doc.image}" alt="${doc.fullName}">` :
+                `<i class="fas fa-user-md"></i>`;
+
+            return `
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <div class="doctor-avatar">
+                            ${avatarHtml}
+                        </div>
+                        <div>
+                            <div class="doctor-name">${doc.fullName}</div>
+                            <div class="doctor-specialty"><i class="fas fa-stethoscope"></i> ${doc.specialty}</div>
+                        </div>
+                    </div>
+                    <div class="doctor-detail"><i class="fas fa-map-marker-alt"></i> ولاية: ${doc.wilaya} - بلدية: ${doc.baladia}</div>
+                    <div class="doctor-detail"><i class="fas fa-phone"></i> ${doc.phone}</div>
+                    <div class="doctor-detail"><i class="fas fa-address-card"></i> ${doc.address}</div>
+                    <div class="work-days"><i class="fas fa-calendar-alt"></i> ${doc.workDays}</div>
+                    ${distText}
+                    <a href="${googleMapsLink}" target="_blank" class="google-route-btn"><i class="fab fa-google"></i> التوجه عبر خرائط Google</a>
+                </div>
+            `;
+        }
+
+        // تحديد الموقع الجغرافي
+        document.getElementById('getLocation').addEventListener('click', function () {
+            const status = document.getElementById('locationStatus');
+            if (!navigator.geolocation) {
+                status.innerText = 'المتصفح لا يدعم تحديد الموقع';
+                return;
+            }
+            status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تحديد الموقع...';
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    userLat = position.coords.latitude;
+                    userLon = position.coords.longitude;
+                    status.innerHTML = `<i class="fas fa-check-circle"></i> تم تحديد موقعك بنجاح`;
+                    displayDoctors();
+                },
+                (error) => {
+                    status.innerText = 'فشل تحديد الموقع: ' + error.message;
+                    displayDoctors();
+                }
+            );
+        });
+
+        // زر العودة للأعلى
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // تهيئة الصفحة
+        renderFilterButtons();
+        displayDoctors();
+    </script>
+</body>
+
+</html>
