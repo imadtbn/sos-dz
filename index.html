@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+
     <!-- أيقونة الموقع -->
     <link rel="icon" href="icons/najda_icon_1.png" alt="icon" type="image/png" loading="lazy" class="welcome-logo">
 
@@ -35,23 +36,22 @@
             /* أخضر طبي */
             --laboratory-color: #6a1b9a;
             /* بنفسجي علمي */
-            --hospital-color: #1565c0;
+            --hospital-color: #8db2db;
             /* أزرق صحي */
             --civil-defense-color: #d32f2f;
             /* أحمر طوارئ */
-            --police-color: #2f13d1;
-            /* أحمر طوارئ */
-
 
             /* أمنية */
             --police-color: #0d47a1;
             /* أزرق داكن رسمي */
             --military-color: #1b5e20;
             /* أخضر عسكري */
-
+            --doctor-color: #2a9d8f;
+            /*  أطباء */
             --service-bg: #ffffff;
             --service-border-radius: 14px;
         }
+
 
         .service-card {
             background: var(--service-bg);
@@ -62,6 +62,11 @@
         /* صيدليات */
         .service-card.pharmacy {
             border-right: 5px solid var(--pharmacy-color);
+        }
+
+        /* أطباء */
+        .service-card.doctor {
+            border-right: 5px solid var(--doctor-color);
         }
 
         /* مخابر */
@@ -79,19 +84,30 @@
             border-right: 5px solid var(--civil-defense-color);
         }
 
+        /* الشرطة */
+        .service-card.police {
+            border-right: 5px solid var(--police-color);
+        }
+
         /* الدرك الوطني */
         .service-card.military {
             border-right: 5px solid var(--military-color);
         }
 
-        /* الدرك الوطني */
-        .service-card.police {
-            border-right: 5px solid var(--police-color);
-        }
-
         /* الدرك */
         .service-card.military .service-icon i {
             color: var(--military-color);
+        }
+
+
+        /* أطباء */
+        .service-card.doctor {
+            border-right: 5px solid var(--doctor-color);
+        }
+
+        /* أطباء */
+        .service-card.doctor .service-icon i {
+            color: var(--doctor-color);
         }
 
         /* الشرطة */
@@ -101,6 +117,10 @@
 
         .service-card.pharmacy .service-icon i {
             color: var(--pharmacy-color);
+        }
+
+        .service-card.doctor .service-icon i {
+            color: var(--doctor-color);
         }
 
         .service-card.laboratory .service-icon i {
@@ -1121,7 +1141,7 @@
             border: none;
         }
 
-                        /* تحسين شعار الفوتر */
+        /* تحسين شعار الفوتر */
         .footer-logo {
             display: flex;
             flex-direction: column;
@@ -1173,6 +1193,149 @@
             font-weight: 700;
             margin: 0;
         }
+
+        /* تنسيق رقم الهاتف في النافذة المنبثقة */
+        #routeDetails .phone-number {
+            direction: ltr;
+            display: inline-block;
+            unicode-bidi: embed;
+            text-align: left;
+        }
+
+        /* لجميع أرقام الهاتف في أي مكان */
+        .phone-number,
+        [class*="phone"] {
+            direction: ltr;
+            display: inline-block;
+            unicode-bidi: embed;
+        }
+
+        .phone-link:hover {
+            color: var(--primary) !important;
+            text-decoration: underline !important;
+        }
+
+        .custom-popup .leaflet-popup-content-wrapper {
+            border-radius: 12px;
+            padding: 0;
+        }
+
+        .map-popup {
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+            padding: 10px;
+        }
+
+        .popup-title {
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 6px;
+            color: #1d3557;
+        }
+
+        .popup-doctor-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .popup-specialty {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 6px;
+        }
+
+        .popup-row {
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .popup-distance {
+            margin-top: 6px;
+            font-weight: bold;
+            color: #e63946;
+            font-size: 13px;
+        }
+
+
+        /* تأثير ناعم للفتح */
+.leaflet-popup {
+    animation: popupFade 0.25s ease-in-out;
+}
+
+@keyframes popupFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* شكل عام */
+.custom-popup .leaflet-popup-content-wrapper {
+    border-radius: 14px;
+    padding: 0;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.map-popup {
+    direction: rtl;
+    padding: 14px;
+    font-family: 'Cairo', sans-serif;
+}
+
+/* شارة الأقرب */
+.nearest-badge {
+    background: #e63946;
+    color: #fff;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+/* العنوان */
+.popup-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: #1d3557;
+}
+
+/* المسافة */
+.popup-distance {
+    margin-top: 8px;
+    font-weight: bold;
+    color: #e63946;
+}
+
+/* زر التوجيه */
+.popup-route-btn {
+    display: block;
+    text-align: center;
+    margin-top: 12px;
+    background: #1d3557;
+    color: #fff;
+    padding: 8px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.popup-route-btn:hover {
+    background: #457b9d;
+}
+
+/* زر الإغلاق أكبر للهواتف */
+.leaflet-popup-close-button {
+    font-size: 22px !important;
+    padding: 6px !important;
+}
+
     </style>
 
 </head>
@@ -1229,6 +1392,8 @@
     <!-- Main Content -->
     <div class="container">
         <div class="main-content">
+
+
             <!-- Map Section -->
             <div class="map-section">
                 <div class="section-header">
@@ -1236,7 +1401,6 @@
                     <h3>الخريطة التفاعلية</h3>
                 </div>
                 <div id="map"></div>
-
             </div>
 
             <!-- Services Section -->
@@ -1351,7 +1515,6 @@
                         <div class="service-title">
                             <div class="service-icon">
                                 <i class="fas fa-capsules"></i>
-                                <i class="fas fa-mortar-pestle"></i>
                             </div>
                             <h3>صيدليات</h3>
                         </div>
@@ -1399,7 +1562,35 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- doctors -->
+                <div class="service-card doctor">
+                    <div class="service-header">
+                        <div class="service-title">
+                            <div class="service-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <h3>أطباء</h3>
+                        </div>
+                    </div>
+
+                    <div class="service-details">
+                        <div id="doctorList">
+                            <p>اضغط على "تحديد موقعي" لعرض أقرب الأطباء </p>
+                        </div>
+                    </div>
+                    <!-- زر المزيد -->
+                    <div style="margin-top: 15px; text-align: left;">
+                        <a href="pages/doctors.html" class="btn btn-secondary"
+                            style="display: inline-flex; gap: 8px; padding: 8px 16px;">
+                            <i class="fas fa-arrow-left"></i> عرض الكل
+                        </a>
+                    </div>
+                </div>
+
             </div>
+
+
         </div>
 
         <!-- Emergency Numbers -->
@@ -1662,11 +1853,11 @@
                 <div class="footer-col">
                     <h4><i class="fas fa-heartbeat"></i> خدمات صحية</h4>
                     <ul>
-                        <li><a href="pages/pharmacies.html"><i class="fas fa-prescription-bottle-alt"></i> الصيدليات</a>
-                        </li>
+                        <li><a href="pages/doctors.html"><i class="fas fa-user-md"></i>أطباء مختلف التخصصات</a></li>
                         <li><a href="pages/laboratories.html"><i class="fas fa-vials"></i> مخابر التحاليل البيولوجية</a>
                         </li>
-                        <li><a href="doctors.html"><i class="fas fa-user-md"></i> الأطباء الخواص</a></li>
+                        <li><a href="pages/pharmacies.html"><i class="fas fa-capsules"></i> الصيدليات</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -1718,10 +1909,476 @@
     <!-- JavaScript -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    <script src="sos.js"></script>
+    <!--  البيانات  script -->
+    <script src="script/hospitals-data.js"></script>
+    <script src="script/police-data.js"></script>
+    <script src="script/gendarmerie-data.js"></script>
+    <script src="script/units-data.js"></script>
+    <script src="script/pharmacies-data.js"></script>
+    <script src="script/laboratories-data.js"></script>
+    <script src="script/doctors-data.js"></script>
 
-
+    <!--    script -->
     <script>
+        let userLat = null;
+        let userLon = null;
+
+        // تهيئة الخريطة
+        let map = L.map('map').setView([36.7525, 3.0418], 10);
+        let userMarker = null;
+        let userLocation = null;
+        let miniMap = null;
+        let miniMarker = null;
+        let miniRouteLine = null;
+
+
+        // إضافة طبقة الخريطة
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // دالة لتوحيد البيانات القادمة من الملفات الخارجية
+        function normalizeService(item) {
+            // توحيد خط الطول: استخدم lng إذا وجد، وإلا استخدم lon
+            const lat = item.lat || 0;
+            const lng = item.lng || item.lon || 0;
+
+            // إنشاء العنوان (address) من wilaya و baladia إذا لم يكن موجوداً
+            let address = item.address || '';
+            if (!address && item.wilaya) {
+                address = `${item.baladia ? item.baladia + '، ' : ''}ولاية ${item.wilaya}`;
+            }
+
+            return {
+                ...item,
+                lat,
+                lng,
+                address
+            };
+        }
+
+        // بيانات الخدمات بعد توحيدها
+        const serviceLocations = {
+            hospitals: (window.hospitalsData || []).map(normalizeService),
+            police: (window.policeData || []).map(normalizeService),
+            military: (window.gendarmerieData || []).map(normalizeService),
+            civilDefense: (window.unitsData || []).map(normalizeService),
+            pharmacy: (window.pharmaciesData || []).map(normalizeService),
+            laboratories: (window.laboratoriesData || []).map(normalizeService),
+            doctor: (window.doctorsData || []).map(normalizeService)
+
+        };
+
+
+        // دالة حساب المسافة (هافرسين)
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
+
+        // Reverse Geocoding
+        async function getAddressFromCoordinates(lat, lng) {
+            try {
+                const response = await fetch(
+                    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&accept-language=ar`
+                );
+                const data = await response.json();
+                if (data && data.address) {
+                    const city = data.address.city || data.address.town || data.address.village || data.address.municipality || '';
+                    const state = data.address.state || '';
+                    const country = data.address.country || '';
+                    return [city, state, country].filter(Boolean).join('، ');
+                }
+                return '';
+            } catch (error) {
+                console.error('خطأ في جلب اسم الموقع:', error);
+                return '';
+            }
+        }
+
+        // تحديد أقرب الخدمات
+        function findNearestServices(userLat, userLng) {
+            const nearestServices = {
+                hospitals: [],
+                police: [],
+                military: [],
+                civilDefense: [],
+                pharmacy: [],
+                laboratories: [],
+                doctor: []
+
+            };
+
+            for (const serviceType in serviceLocations) {
+                const services = serviceLocations[serviceType].map(service => {
+                    const distance = calculateDistance(userLat, userLng, service.lat, service.lng);
+                    return { ...service, distance };
+                }).sort((a, b) => a.distance - b.distance);
+                nearestServices[serviceType] = services.slice(0, 3);
+            }
+            return nearestServices;
+        }
+
+        // عرض الخدمات في القوائم
+        function displayServices(services) {
+            const hospitalsList = document.getElementById('hospitalsList');
+            const policeList = document.getElementById('policeList');
+            const militaryList = document.getElementById('militaryList');
+            const civilDefenseList = document.getElementById('civilDefenseList');
+            const pharmacyList = document.getElementById('pharmacyList');
+            const laboratoriesList = document.getElementById('laboratoriesList');
+            const doctorList = document.getElementById('doctorList');
+
+            [hospitalsList, policeList, militaryList, civilDefenseList, pharmacyList, laboratoriesList, doctorList].forEach(list => {
+                if (list) list.innerHTML = '';
+            });
+
+            // المستشفيات
+            services.hospitals.forEach((hospitals, index) => {
+                const item = document.createElement('div');
+                item.className = 'service-item' + (index === 0 ? ' nearest' : '');
+                item.innerHTML = `<span>${hospitals.name}</span><span class="distance">${hospitals.distance.toFixed(1)} كم</span>`;
+                item.addEventListener('click', () => showRouteToService(hospitals));
+                hospitalsList.appendChild(item);
+            });
+
+            // الشرطة
+            services.police.forEach((police, index) => {
+                const item = document.createElement('div');
+                item.className = 'service-item' + (index === 0 ? ' nearest' : '');
+                item.innerHTML = `<span>${police.name}</span><span class="distance">${police.distance.toFixed(1)} كم</span>`;
+                item.addEventListener('click', () => showRouteToService(police));
+                policeList.appendChild(item);
+            });
+
+            // الدرك
+            services.military.forEach((military, index) => {
+                const item = document.createElement('div');
+                item.className = 'service-item' + (index === 0 ? ' nearest' : '');
+                item.innerHTML = `<span>${military.name}</span><span class="distance">${military.distance.toFixed(1)} كم</span>`;
+                item.addEventListener('click', () => showRouteToService(military));
+                militaryList.appendChild(item);
+            });
+
+            // الحماية المدنية
+            services.civilDefense.forEach((civil, index) => {
+                const item = document.createElement('div');
+                item.className = 'service-item' + (index === 0 ? ' nearest' : '');
+                item.innerHTML = `<span>${civil.name}</span><span class="distance">${civil.distance.toFixed(1)} كم</span>`;
+                item.addEventListener('click', () => showRouteToService(civil));
+                civilDefenseList.appendChild(item);
+            });
+
+            // صيدليات
+            services.pharmacy.forEach((pharmacy, index) => {
+                const item = document.createElement('div');
+                item.className = 'service-item' + (index === 0 ? ' nearest' : '');
+                item.innerHTML = `<span>${pharmacy.name}</span><span class="distance">${pharmacy.distance.toFixed(1)} كم</span>`;
+                item.addEventListener('click', () => showRouteToService(pharmacy));
+                pharmacyList.appendChild(item);
+            });
+
+            // مخابر بيولوجية
+            services.laboratories.forEach((laboratory, index) => {
+                const item = document.createElement('div');
+                item.className = 'service-item' + (index === 0 ? ' nearest' : '');
+                item.innerHTML = `<span>${laboratory.name}</span><span class="distance">${laboratory.distance.toFixed(1)} كم</span>`;
+                item.addEventListener('click', () => showRouteToService(laboratory));
+                laboratoriesList.appendChild(item);
+            });
+
+            // أطباء
+            services.doctor.forEach((doctor, index) => {
+                const item = document.createElement('div');
+                item.className = 'service-item' + (index === 0 ? ' nearest' : '');
+
+                item.innerHTML = `
+        <span>${doctor.lastName}</span>
+        <span>${doctor.firstName}</span>        
+        <span>${doctor.specialty}</span>
+        <span class="distance">${doctor.distance.toFixed(1)} كم</span>
+    `;
+
+                item.addEventListener('click', () => showRouteToService(doctor));
+                doctorList.appendChild(item);
+            });
+
+        }
+
+        // إضافة العلامات على الخريطة
+        function addMarkersToMap(services) {
+
+            map.eachLayer(layer => {
+                if (layer instanceof L.Marker && layer !== userMarker) {
+                    map.removeLayer(layer);
+                }
+            });
+
+            function buildPopupContent(service, isNearest) {
+
+                const googleUrl = `https://www.google.com/maps/dir/?api=1&destination=${service.lat},${service.lng}`;
+
+                let content = `<div class="map-popup ${isNearest ? 'nearest-popup' : ''}">`;
+
+                if (isNearest) {
+                    content += `<div class="nearest-badge">الأقرب إليك</div>`;
+                }
+
+                if (service.name) {
+                    content += `<div class="popup-title">${service.name}</div>`;
+                }
+
+                if (service.firstName || service.lastName) {
+                    content += `<div class="popup-doctor-name">
+                ${service.firstName || ''} ${service.lastName || ''}
+            </div>`;
+                }
+
+                if (service.specialty) {
+                    content += `<div class="popup-specialty">${service.specialty}</div>`;
+                }
+
+                if (service.address) {
+                    content += `<div class="popup-row">📍 ${service.address}</div>`;
+                }
+
+                if (service.phone) {
+                    content += `<div class="popup-row">📞 
+                <a href="tel:${service.phone}">${service.phone}</a>
+            </div>`;
+                }
+
+                if (service.distance !== undefined) {
+                    content += `<div class="popup-distance">
+                🚗 ${service.distance.toFixed(1)} كم
+            </div>`;
+                }
+
+                // زر التوجيه
+                content += `
+            <a href="${googleUrl}" target="_blank" class="popup-route-btn">
+                🧭 توجيه عبر Google Maps
+            </a>
+        `;
+
+                content += `</div>`;
+                return content;
+            }
+
+            function addMarker(service, iconHtml, colorVar, index) {
+
+                if (!service.lat || !service.lng) return;
+
+                const isNearest = index === 0;
+
+                const icon = L.divIcon({
+                    html: `<i class="${iconHtml}" 
+                    style="color:${isNearest ? '#e63946' : colorVar};
+                    font-size:${isNearest ? '24px' : '20px'};"></i>`,
+                    iconSize: [25, 25],
+                    iconAnchor: [12, 24],
+                    popupAnchor: [0, -20],
+                    className: isNearest ? 'custom-marker nearest-marker' : 'custom-marker'
+                });
+
+                L.marker([service.lat, service.lng], { icon })
+                    .addTo(map)
+                    .bindPopup(buildPopupContent(service, isNearest), {
+                        maxWidth: 300,
+                        className: 'custom-popup',
+                        autoPan: true
+                    });
+            }
+
+            services.hospitals.forEach((s, i) => addMarker(s, 'fas fa-hospital', 'var(--hospital-color)', i));
+            services.police.forEach((s, i) => addMarker(s, 'fas fa-shield-alt', 'var(--police-color)', i));
+            services.military.forEach((s, i) => addMarker(s, 'fas fa-star', 'var(--military-color)', i));
+            services.civilDefense.forEach((s, i) => addMarker(s, 'fas fa-fire-extinguisher', 'var(--civil-defense-color)', i));
+            services.pharmacy.forEach((s, i) => addMarker(s, 'fas fa-capsules', 'var(--pharmacy-color)', i));
+            services.laboratories.forEach((s, i) => addMarker(s, 'fas fa-vial', 'var(--laboratory-color)', i));
+            services.doctor.forEach((s, i) => addMarker(s, 'fas fa-user-md', 'var(--doctor-color)', i));
+        }
+
+        // حدث تحديد الموقع
+        document.getElementById('getLocation').addEventListener('click', () => {
+            const status = document.getElementById('locationStatus');
+            const button = document.getElementById('getLocation');
+
+            button.disabled = true;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تحديد الموقع...';
+            status.textContent = 'جاري تحديد موقعك...';
+            status.style.color = '#ffdddd';
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    async (position) => {
+                        const userLat = position.coords.latitude;
+                        const userLng = position.coords.longitude;
+                        userLocation = { lat: userLat, lng: userLng };
+
+                        const coordsText = `تم تحديد موقعك: ${userLat.toFixed(4)}, ${userLng.toFixed(4)}`;
+                        status.textContent = coordsText;
+                        status.style.color = '#aaffaa';
+
+                        const address = await getAddressFromCoordinates(userLat, userLng);
+                        if (address) status.innerHTML = `${coordsText}<br>${address}`;
+
+                        if (userMarker) map.removeLayer(userMarker);
+                        userMarker = L.marker([userLat, userLng], {
+                            icon: L.divIcon({
+                                html: '<i class="fas fa-user" style="color: #d32f2f; font-size: 24px;"></i>',
+                                iconSize: [24, 24],
+                                className: 'user-marker'
+                            })
+                        }).addTo(map).bindPopup('<b>موقعك الحالي</b>');
+
+                        map.setView([userLat, userLng], 13);
+
+                        const nearestServices = findNearestServices(userLat, userLng);
+                        displayServices(nearestServices);
+                        addMarkersToMap(nearestServices);
+
+                        button.disabled = false;
+                        button.innerHTML = '<i class="fas fa-map-marker-alt"></i> تحديد موقعي الحالي';
+                    },
+                    (error) => {
+                        let errorMessage = 'فشل تحديد الموقع. ';
+                        switch (error.code) {
+                            case error.PERMISSION_DENIED: errorMessage += 'تم رفض الإذن.'; break;
+                            case error.POSITION_UNAVAILABLE: errorMessage += 'معلومات الموقع غير متاحة.'; break;
+                            case error.TIMEOUT: errorMessage += 'انتهت المهلة.'; break;
+                            default: errorMessage += 'خطأ غير معروف.';
+                        }
+                        status.textContent = errorMessage;
+                        status.style.color = '#ffaaaa';
+
+                        userLocation = { lat: 36.7525, lng: 3.0418 };
+                        const nearestServices = findNearestServices(userLocation.lat, userLocation.lng);
+                        displayServices(nearestServices);
+                        addMarkersToMap(nearestServices);
+
+                        button.disabled = false;
+                        button.innerHTML = '<i class="fas fa-map-marker-alt"></i> تحديد موقعي الحالي';
+                    }
+                );
+            } else {
+                status.textContent = 'المتصفح لا يدعم تحديد الموقع الجغرافي';
+                status.style.color = '#ffaaaa';
+                button.disabled = false;
+                button.innerHTML = '<i class="fas fa-map-marker-alt"></i> تحديد موقعي الحالي';
+            }
+
+            localStorage.setItem('userLat', userLat);
+            localStorage.setItem('userLon', userLon);
+            localStorage.setItem('locationTimestamp', Date.now());
+
+        });
+
+        // عرض جميع الخدمات
+        document.getElementById('showAllServices').addEventListener('click', () => {
+
+
+            const allServices = {};
+            for (const type in serviceLocations) {
+                allServices[type] = serviceLocations[type].map(s => ({
+                    ...s,
+                    distance: calculateDistance(userLocation.lat, userLocation.lng, s.lat, s.lng)
+                }));
+            }
+
+            displayServices(allServices);
+            addMarkersToMap(allServices);
+
+            const allPoints = Object.values(allServices).flat().map(s => [s.lat, s.lng]);
+            if (allPoints.length > 0) {
+                const bounds = L.latLngBounds(allPoints);
+                if (userMarker) bounds.extend([userLocation.lat, userLocation.lng]);
+                map.fitBounds(bounds);
+            }
+        });
+
+        // عرض المسار
+        function showRouteToService(service) {
+            if (!userLocation) {
+                alert('الرجاء تحديد موقعك أولاً');
+                return;
+            }
+
+            const modal = document.getElementById('routeModal');
+            const routeTitle = document.getElementById('routeTitle');
+            const routeDetails = document.getElementById('routeDetails');
+
+            routeTitle.textContent = service.name;
+
+            const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${service.lat},${service.lng}&travelmode=driving`;
+            const cleanPhone = service.phone ? service.phone.replace(/[^\d+]/g, '') : '';
+
+            routeDetails.innerHTML = `
+    <p><strong>العنوان:</strong> ${service.address || ''}</p>
+    <p><strong>الهاتف:</strong> 
+        <a href="tel:${cleanPhone}" class="phone-link" dir="ltr" style="text-decoration:none; color:inherit;">
+            <span class="phone-number">${service.phone || ''}</span>
+        </a>
+    </p>
+    <a href="${googleMapsUrl}" target="_blank" class="google-route-btn">التنقل عبر Google Maps</a>
+`;
+
+            modal.style.display = 'flex';
+
+            setTimeout(() => {
+                if (!miniMap) {
+                    miniMap = L.map('miniMap', { zoomControl: false, attributionControl: false });
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(miniMap);
+                }
+
+                miniMap.setView([service.lat, service.lng], 14);
+                if (miniMarker) miniMap.removeLayer(miniMarker);
+                miniMarker = L.marker([service.lat, service.lng]).addTo(miniMap);
+
+                if (miniRouteLine) miniMap.removeLayer(miniRouteLine);
+                miniRouteLine = L.polyline([[userLocation.lat, userLocation.lng], [service.lat, service.lng]], {
+                    color: '#1a73e8', weight: 4, opacity: 0.8
+                }).addTo(miniMap);
+
+                miniMap.fitBounds([[userLocation.lat, userLocation.lng], [service.lat, service.lng]], { padding: [30, 30] });
+                miniMap.invalidateSize();
+            }, 200);
+        }
+
+        // إغلاق النافذة المنبثقة
+        document.addEventListener('click', function (e) {
+            const modal = document.getElementById('routeModal');
+            if (e.target.closest('.close-modal') || e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // تهيئة أولية للخريطة
+        document.addEventListener('DOMContentLoaded', () => {
+            const defaultLocation = { lat: 36.7525, lng: 3.0418 };
+            const nearestServices = findNearestServices(defaultLocation.lat, defaultLocation.lng);
+            addMarkersToMap(nearestServices);
+            displayServices(nearestServices);
+
+        });
+
+        // زر العودة للأعلى
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            scrollBtn.style.display = window.pageYOffset > 300 ? 'block' : 'none';
+        });
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+
         // زر الطوارئ العائم
 
         const toggleBtn = document.getElementById("emergencyToggle");
@@ -1760,9 +2417,6 @@
         });
 
     </script>
-
-
-
 
 </body>
 
