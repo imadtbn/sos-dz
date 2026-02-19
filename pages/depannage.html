@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>مخابر التحاليل البيولوجية - النجدة DZ</title>
-
+    <title>خدمة جر السيارات - النجدة DZ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap">
+
 
     <!-- أيقونة الموقع -->
     <link rel="icon" href="../icons/najda_icon_1.png" alt="icon" type="image/png" loading="lazy" class="welcome-logo">
@@ -27,9 +26,9 @@
     <link rel="icon" type="image/png" sizes="192x192" href="../icons/najda_icon_3.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../icons/najda_icon_3.png">
 
-    <link rel="stylesheet" href="../style/laboratoires.css">
-    <link rel="stylesheet" href="../style/SidebarAnimation.css">
 
+    <link rel="stylesheet" href="../style/depannage.css">
+    <link rel="stylesheet" href="../style/SidebarAnimation.css">
 
 
 </head>
@@ -39,9 +38,8 @@
         <div class="container header-content">
             <div class="logo">
                 <img src="../icons/najda_icon_3.png" alt="شعار النجدة Dz" width="50" height="50" loading="lazy">
-                <h1>مخابر التحاليل البيولوجية</h1>
+                <h1>خدمة الجر والرأب للسيارات والشاحنات</h1>
             </div>
-
             <button class="menu-toggle" id="menuToggle">
                 <i class="fas fa-bars"></i>
             </button>
@@ -58,43 +56,201 @@
                 <a href="police.html">الشرطة</a>
                 <a href="pharmacies.html">صيدليات</a>
                 <a href="doctors.html">أطباء</a>
-                <a href="laboratories.html" class="active">تحاليل طبية</a>
-                <a href="depannage.html">جر السيارات</a>
+                <a href="gendarmerie.html">الدرك الوطني</a>
+                <a href="laboratories.html">تحاليل طبية</a>
+                <a href="depannage.html" class="active">جر السيارات</a>
                 <a href="about.html">عن الموقع</a>
             </nav>
-
         </div>
     </header>
 
+
     <section class="hero">
         <div class="container">
-            <h2>أقرب مخابر التحاليل البيولوجية</h2>
-            <p>ابحث عن أقرب مخبر لإجراء التحاليل الطبية</p>
+            <h2>أقرب خدمات جر السيارت إليك</h2>
+            <p>ابحث عن أقرب الجر والرأب للسيارات والشاحنات في أي وقت</p>
             <div class="location-access">
                 <button id="getLocation" class="btn"><i class="fas fa-map-marker-alt"></i> تحديث الموقع</button>
+
                 <a href="subscription.html" class="btn">
                     <i class="fas fa-id-card"></i>
-                    تسجيل مخبر
+                    تسجيل خدمة
                 </a>
-
             </div>
             <div id="locationStatus" style="color: #ffdddd;"></div>
         </div>
     </section>
 
-
     <!-- قسم البحث الاحترافي -->
     <div class="search-container">
         <div class="search-box">
             <i class="fas fa-search search-icon"></i>
-            <input type="text" id="searchInput" placeholder="ابحث عن مخابر التحاليل البيولوجية ...">
+            <input type="text" id="searchInput" placeholder="ابحث عن خدمات جر السيارات ...">
         </div>
     </div>
 
+    <style>
+        .search-container {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 0 15px;
+        }
 
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 18px;
+            /* لأن الموقع RTL */
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--laboratory-color);
+            font-size: 1.1rem;
+            pointer-events: none;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 14px 50px 14px 16px;
+            /* مساحة للأيقونة */
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'Cairo', sans-serif;
+            transition: 0.3s ease;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        #searchInput:focus {
+            border-color: var(--laboratory-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            outline: none;
+        }
+
+        /* تأثير عند الكتابة */
+        #searchInput:not(:placeholder-shown) {
+            border-color: var(--laboratory-color);
+        }
+
+        /* استجابة للموبايل */
+        @media (max-width: 768px) {
+            .search-container {
+                margin: 15px auto;
+            }
+
+            #searchInput {
+                font-size: 16px;
+                /* يمنع تكبير iPhone */
+                padding: 15px 50px 15px 16px;
+            }
+        }
+
+
+        .google-fallback-link:hover {
+            background: #3367d6;
+            transform: translateY(-2px);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px 20px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            color: #ff9800;
+            margin-bottom: 15px;
+        }
+
+        .google-fallback-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #4285f4;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .google-fallback-link:hover {
+            background: #3367d6;
+            transform: translateY(-2px);
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            color: #ff9800;
+            margin-bottom: 15px;
+        }
+
+        .google-fallback-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #4285f4;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .google-fallback-link:hover {
+            background: #3367d6;
+            transform: translateY(-2px);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px 20px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            color: #ff9800;
+            margin-bottom: 15px;
+        }
+
+        .google-fallback-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #4285f4;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            margin-top: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .google-fallback-link:hover {
+            background: #3367d6;
+            transform: translateY(-2px);
+        }
+    </style>
 
     <div class="container">
-        <div id="laboratoriesList" class="laboratories-grid">
+        <div id="depannageList" class="depannage-grid">
             <!-- سيتم ملؤها بالبيانات -->
             <div class="spinner"></div>
         </div>
@@ -170,7 +326,9 @@
     </footer>
 
     <!-- إضافة رابط ملف البيانات قبل الـ script -->
-    <script src="../script/laboratories-data.js"></script>
+    <script src="../script/depannage-data.js"></script>
+    <!--  القائمة الجانبية  script -->
+    <script src="../script/SidebarAnimation.js"></script>
 
     <script>
 
@@ -188,9 +346,9 @@
             userLon = parseFloat(savedLon);
             document.getElementById('locationStatus').innerHTML =
                 '<i class="fas fa-check-circle"></i> تم استخدام موقعك المخزن';
-            displayLaboratories();
+            displayDepannage();
         } else {
-            displayLaboratories(); // عرض بدون ترتيب
+            displayDepannage(); // عرض بدون ترتيب
         }
 
 
@@ -206,58 +364,53 @@
             return R * c;
         }
 
-        // عرض المخابر مرتبة حسب المسافة
-        function displayLaboratories() {
-            const container = document.getElementById('laboratoriesList');
+        // عرض الصيدليات مرتبة حسب المسافة
+        function displayDepannage() {
+            const container = document.getElementById('depannageList');
             if (!userLat || !userLon) {
-                // إذا لم يحدد الموقع، عرض المخابر بدون ترتيب
+                // إذا لم يحدد الموقع، عرض الصيدليات بدون ترتيب
                 let html = '';
-                laboratoriesData.forEach(lab => {
-                    html += renderLaboratoryCard(lab, null);
+                depannageData.forEach(p => {
+                    html += renderPharmacyCard(p, null);
                 });
                 container.innerHTML = html || '<p>لا توجد بيانات</p>';
                 return;
             }
 
-            // حساب المسافة لكل مخبر وترتيبها
-            const withDistance = laboratoriesData.map(lab => {
-                const dist = calculateDistance(userLat, userLon, lab.lat, lab.lon);
-                return { ...lab, distance: dist };
+            // حساب المسافة لكل صيدلية وترتيبها
+            const withDistance = depannageData.map(p => {
+                const dist = calculateDistance(userLat, userLon, p.lat, p.lon);
+                return { ...p, distance: dist };
             }).sort((a, b) => a.distance - b.distance);
 
             let html = '';
-            withDistance.forEach(lab => {
-                html += renderLaboratoryCard(lab, lab.distance.toFixed(1));
+            withDistance.forEach(p => {
+                html += renderPharmacyCard(p, p.distance.toFixed(1));
             });
             container.innerHTML = html;
         }
 
-        function renderLaboratoryCard(lab, distance) {
+        function renderPharmacyCard(p, distance) {
             const distText = distance ? `<div class="distance-badge"><i class="fas fa-location-dot"></i> ${distance} كم</div>` : '';
-            const googleMapsLink = `https://www.google.com/maps/dir/?api=1&destination=${lab.lat},${lab.lon}`;
+            const googleMapsLink = `https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lon}`;
 
             // تنظيف رقم الهاتف من الرموز غير الرقمية (الشرطات، المسافات) مع الاحتفاظ بـ +
-            const cleanPhone = lab.phone ? lab.phone.replace(/[^\d+]/g, '') : '';
-            // إنشاء رابط الهاتف فقط إذا كان الرقم موجودًا
-            const phoneLink = lab.phone
-                ? `<a href="tel:${cleanPhone}" class="phone-card-link" dir="ltr" style="text-decoration:none; color:inherit;">${lab.phone}</a>`
-                : '';
+            const cleanPhone = p.phone ? p.phone.replace(/[^\d+]/g, '') : '';
 
             return `
-        <div class="laboratory-card">
-            <div class="laboratory-icon"><i class="fas fa-flask"></i></div>
-            <div class="laboratory-name">${lab.name}</div>
-            <div class="laboratory-detail"><i class="fas fa-map-marker-alt"></i> ولاية: ${lab.wilaya} - بلدية: ${lab.baladia}</div>
-            <div class="laboratory-detail">
+        <div class="depannage-card">
+            <div class="depannage-icon"><i class="fas fa-truck-pickup"></i></div>
+            <div class="depannage-name">${p.name}</div>
+            <div class="depannage-detail"><i class="fas fa-map-marker-alt"></i> ولاية: ${p.wilaya} - بلدية: ${p.baladia}</div>
+            <div class="depannage-detail">
                 <i class="fas fa-phone"></i> 
-                ${phoneLink}
+                <a href="tel:${cleanPhone}" class="phone-card-link" dir="ltr" style="text-decoration:none; color:inherit;">${p.phone}</a>
             </div>
             ${distText}
             <a href="${googleMapsLink}" target="_blank" class="google-route-btn"><i class="fab fa-google"></i> التوجه عبر خرائط Google</a>
         </div>
     `;
         }
-
         // تحديد الموقع الجغرافي
         document.getElementById('getLocation').addEventListener('click', function () {
             const status = document.getElementById('locationStatus');
@@ -271,17 +424,17 @@
                     userLat = position.coords.latitude;
                     userLon = position.coords.longitude;
                     status.innerHTML = `<i class="fas fa-check-circle"></i> تم تحديد موقعك بنجاح`;
-                    displayLaboratories();
+                    displayDepannage();
                 },
                 (error) => {
                     status.innerText = 'فشل تحديد الموقع: ' + error.message;
-                    displayLaboratories(); // عرض بدون ترتيب
+                    displayDepannage(); // عرض بدون ترتيب
                 }
             );
         });
 
         // عرض أولي بدون موقع
-        displayLaboratories();
+        displayDepannage();
 
         // عناصر البحث
         const searchInput = document.getElementById('searchInput');
@@ -292,31 +445,26 @@
             const query = searchInput.value.trim().toLowerCase();
             if (query === '') {
                 // إعادة عرض جميع البيانات (بدون موقع)
-                if (typeof displayLaboratories === 'function') {
-                    displayLaboratories(); // الدالة الأصلية في الصفحة
-                } else {
-                    // إذا لم توجد، أعد تحميل الصفحة
-                    location.reload();
-                }
+                displayDepannage(); // تصحيح: displayDepannage (بحرف كبير)
                 return;
             }
 
-            // تصفية البيانات (laboratoriesData هي المصفوفة العامة)
-            const filtered = laboratoriesData.filter(item => {
+            // تصفية البيانات
+            const filtered = depannageData.filter(item => {
                 return item.name.toLowerCase().includes(query) ||
                     (item.wilaya && item.wilaya.toLowerCase().includes(query)) ||
                     (item.baladia && item.baladia.toLowerCase().includes(query)) ||
                     (item.phone && item.phone.includes(query));
             });
 
-            // عرض النتائج (معرف القائمة بالأحرف الصغيرة)
-            const container = document.getElementById('laboratoriesList');
+            // عرض النتائج
+            const container = document.getElementById('depannageList'); // تصحيح: depannageList
             if (filtered.length === 0) {
-                // رابط بحث Google مخصص للمخابر
-                const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}+مخبر+تحاليل+طبية+الجزائر`;
+                // رابط بحث Google مناسب
+                const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}+depannage+الجزائر`;
                 container.innerHTML = `
             <div class="no-results">
-                <i class="fas fa-flask"></i>
+                <i class="fas fa-truck-pickup"></i>
                 <p>لم نتمكن من العثور على "${searchInput.value}" في قاعدة بياناتنا.</p>
                 <p>قد تجد النتائج التي تبحث عنها عبر 
                     <a href="${googleSearchUrl}" target="_blank" class="google-fallback-link">
@@ -328,12 +476,7 @@
             } else {
                 let html = '';
                 filtered.forEach(item => {
-                    // استخدام الدالة الأصلية إذا وجدت، وإلا استخدام الدالة الاحتياطية
-                    if (typeof renderLaboratoryCard === 'function') {
-                        html += renderLaboratoryCard(item, null);
-                    } else {
-                        html += renderLaboratoriesCard(item, null);
-                    }
+                    html += renderPharmacyCard(item, null); // تصحيح: renderPharmacyCard
                 });
                 container.innerHTML = html;
             }
@@ -341,7 +484,7 @@
 
         document.getElementById("searchInput").addEventListener("keyup", function (e) {
             if (e.key === "Enter") {
-                performSearch(laboratoriesData); // ضع اسم دالة البحث الخاصة بك هنا
+                performSearch(depannageData); // ضع اسم دالة البحث الخاصة بك هنا
             }
 
             const searchInput = document.getElementById("searchInput");
@@ -352,14 +495,14 @@
 
                 // إذا تم مسح البحث بالكامل
                 if (value === "") {
-                    displayLaboratories(laboratoriesData);
+                    displayDepannage(depannageData);
                     // استبدل displayLaboratories بدالة عرض البيانات الأصلية عندك
                     return;
                 }
 
                 // تنفيذ البحث عند الضغط على Enter
                 if (e.key === "Enter") {
-                    performSearch(laboratoriesData);
+                    performSearch(depannageData);
                 }
             });
 
@@ -371,23 +514,22 @@
             if (e.key === 'Enter') performSearch();
         });
 
-        // دالة عرض البطاقة الاحتياطية (بنفس تنسيق البطاقات في الصفحة)
-        function renderLaboratoriesCard(p, distance) {
+        // دالة عرض البطاقة (بنفس اسم الدالة الأصلية ومعدلة برقم هاتف قابل للنقر)
+        function renderPharmacyCard(p, distance) {
             const distText = distance ? `<div class="distance-badge"><i class="fas fa-location-dot"></i> ${distance} كم</div>` : '';
             const googleMapsLink = `https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lon}`;
 
-            // تنظيف رقم الهاتف وإنشاء رابط الاتصال
             const cleanPhone = p.phone ? p.phone.replace(/[^\d+]/g, '') : '';
             const phoneLink = p.phone
                 ? `<a href="tel:${cleanPhone}" class="phone-card-link" dir="ltr" style="text-decoration:none; color:inherit;">${p.phone}</a>`
                 : '';
 
             return `
-        <div class="laboratory-card">
-            <div class="laboratory-icon"><i class="fas fa-flask"></i></div>
-            <div class="laboratory-name">${p.name}</div>
-            <div class="laboratory-detail"><i class="fas fa-map-marker-alt"></i> ولاية: ${p.wilaya} - بلدية: ${p.baladia}</div>
-            <div class="laboratory-detail">
+        <div class="depannage-card">
+            <div class="depannage-icon"><i class="fas fa-truck-pickup"></i></div>
+            <div class="depannage-name">${p.name}</div>
+            <div class="depannage-detail"><i class="fas fa-map-marker-alt"></i> ولاية: ${p.wilaya} - بلدية: ${p.baladia}</div>
+            <div class="depannage-detail">
                 <i class="fas fa-phone"></i> 
                 ${phoneLink}
             </div>
@@ -396,11 +538,7 @@
         </div>
     `;
         }
-
     </script>
-
-    <!--  القائمة الجانبية  script -->
-    <script src="../script/SidebarAnimation.js"></script>
 
 </body>
 

@@ -8,409 +8,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap">
 
-    <stylesheet src="../style/22222.css"></stylesheet>
     <!-- أيقونة الموقع -->
     <link rel="icon" href="../icons/najda_icon_1.png" alt="icon" type="image/png" loading="lazy" class="welcome-logo">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-        }
+    <meta name="description"
+        content="منصة النجدة والطوارئ في الجزائر لتحديد أقرب خدمات الإسعاف، الحماية المدنية، الشرطة، مخابر التحاليل البيولوجية، الصيدليات، الأطباء وجرّ السيارات بسرعة ودقة عبر الموقع الجغرافي. وصول فوري لأرقام الطوارئ والخدمات القريبة منك في جميع الولايات.">
+    <!-- لون شريط المتصفح -->
+    <meta name="theme-color" content="#1d3557">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-        :root {
-            --primary: #e63946;
-            --secondary: #1d3557;
-            --accent: #457b9d;
-            --light: #f1faee;
-            --warning: #ff9e00;
-            --success: #2a9d8f;
-            --civil-color: #d32f2f;
-            /* أحمر الحماية المدنية */
-        }
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#1d3557">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1f33">
 
-        body {
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-            padding-top: 78px;
-        }
+    <!-- أيقونة الموقع -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../icons/najda_icon_3.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../icons/najda_icon_3.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../icons/najda_icon_3.png">
 
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
+    <link rel="stylesheet" href="../style/protectioncivile.css">
+    <link rel="stylesheet" href="../style/SidebarAnimation.css">
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            right: 0;
-            left: 0;
-            z-index: 1000;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo i {
-            font-size: 2.2rem;
-            color: var(--primary);
-        }
-
-        .logo h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .back-home {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: white;
-            color: var(--secondary);
-            padding: 8px 20px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .back-home:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* Hero Section */
-        .hero {
-            background:
-                linear-gradient(to bottom,
-                    rgba(29, 53, 87, 0.3),
-                    rgba(29, 53, 87, 0.7)),
-                url('../images/hero-dgpc.jpg');
-
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .hero h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-        }
-
-        .location-access {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 2rem 0 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--civil-color);
-            color: white;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* قائمة الوحدات */
-        .units-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-        }
-
-        .unit-card {
-            background: white;
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-            transition: 0.3s;
-            border-right: 6px solid var(--civil-color);
-            position: relative;
-        }
-
-        .unit-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .unit-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--civil-color);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-
-        .unit-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 10px;
-        }
-
-        .unit-detail {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 8px 0;
-            color: #555;
-        }
-
-        .unit-detail i {
-            width: 20px;
-            color: var(--civil-color);
-        }
-
-        .distance-badge {
-            background: var(--success);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            display: inline-block;
-            margin: 10px 0;
-        }
-
-        .google-route-btn {
-            display: block;
-            background: #1a73e8;
-            color: white;
-            text-align: center;
-            padding: 12px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 15px;
-            transition: 0.3s;
-        }
-
-        .google-route-btn:hover {
-            background: #1558b0;
-        }
-
-        .spinner {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid var(--civil-color);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 30px auto;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Footer */
-        /* ===== Footer Modern ===== */
-
-        footer {
-            background: linear-gradient(135deg, var(--secondary), #14213d);
-            color: white;
-            padding: 3rem 0 2rem;
-            margin-top: 3rem;
-        }
-
-        /* إزالة التوسيط العمودي القديم */
-        .footer-content {
-            width: 100%;
-        }
-
-        /* توزيع الأعمدة */
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 40px;
-            text-align: right;
-        }
-
-        /* عناوين الأعمدة */
-        .footer-col h4 {
-            margin-bottom: 18px;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #ffffff;
-        }
-
-        /* القوائم */
-        .footer-col ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 12px;
-        }
-
-        /* الروابط */
-        .footer-col ul li a {
-            color: #ccc;
-            text-decoration: none;
-            /* منع التسطير نهائياً */
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            position: relative;
-        }
-
-        /* تأثير احترافي */
-        .footer-col ul li a:hover {
-            color: #ffffff;
-            transform: translateX(-8px);
-        }
-
-        /* تأثير أيقونة */
-        .footer-col ul li a i {
-            transition: 0.3s ease;
-        }
-
-        .footer-col ul li a:hover i {
-            color: #e63946;
-            transform: scale(1.25);
-        }
-
-        /* خط سفلي متحرك احترافي */
-        .footer-col ul li a::after {
-            content: "";
-            position: absolute;
-            bottom: -3px;
-            right: 0;
-            width: 0%;
-            height: 2px;
-            background: #e63946;
-            transition: 0.3s ease;
-        }
-
-        .footer-col ul li a:hover::after {
-            width: 100%;
-        }
-
-        /* الجزء السفلي */
-        .footer-bottom {
-            margin-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            padding-top: 20px;
-            text-align: center;
-            font-size: 0.95rem;
-            color: #bbb;
-        }
-
-        /* تحسين شعار الفوتر */
-        .footer-logo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .footer-logo img {
-            width: 90px;
-            height: 90px;
-            object-fit: cover;
-            border-radius: 50%;
-            background: white;
-            padding: 10px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .footer-logo img:hover {
-            transform: scale(1.08);
-            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
-        }
-
-        .footer-logo h2 {
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            /* المسافة بين الصورة والنص */
-        }
-
-        .logo img {
-            display: block;
-            width: 50px;
-            /* حجم الشعار */
-            height: 50px;
-            border-radius: 50%;
-            /* يجعل الصورة دائرية */
-            object-fit: cover;
-            /* لضمان عدم تشويه الصورة داخل الدائرة */
-        }
-
-        .logo h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        .phone-card-link {
-            transition: color 0.2s ease;
-        }
-
-        .phone-card-link:hover {
-            color: var(--primary) !important;
-            text-decoration: underline !important;
-        }
-    </style>
 
 </head>
 
@@ -422,7 +39,26 @@
                 <img src="../icons/dgpc.svg" alt="شعار النجدة Dz" width="50" height="50" loading="lazy">
                 <h1>الحماية المدنية</h1>
             </div>
-            <a href="../index.html" class="back-home"><i class="fas fa-arrow-right"></i> العودة</a>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="nav-overlay" id="navOverlay"></div>
+
+            <nav class="nav-links" id="navLinks">
+                <button class="close-menu" id="closeMenu">
+                    <i class="fas fa-times"></i>
+                </button>
+
+                <a href="../index.html">الرئيسية</a>
+                <a href="hospitals.html">مستشفيات</a>
+                <a href="protectioncivil.html" class="active">حماية مدنية</a>
+                <a href="pharmacies.html">صيدليات</a>
+                <a href="doctors.html">أطباء</a>
+                <a href="laboratories.html">تحاليل طبية</a>
+                <a href="depannage.html">جر السيارات</a>
+                <a href="about.html">عن الموقع</a>
+            </nav>
         </div>
     </header>
 
@@ -431,136 +67,21 @@
             <h2>أقرب وحدات الحماية المدنية</h2>
             <p>اعثر على الوحدة الأقرب في حالات الطوارئ</p>
             <div class="location-access">
-                <button id="getLocation" class="btn"><i class="fas fa-map-marker-alt"></i> تحديد موقعي</button>
+                <button id="getLocation" class="btn"><i class="fas fa-map-marker-alt"></i> تحديث الموقع</button>
             </div>
             <div id="locationStatus" style="color: #ffdddd;"></div>
         </div>
     </section>
 
-    <!-- قسم البحث -->
+    <!-- قسم البحث الاحترافي -->
     <div class="search-container">
-        <input type="text" id="searchInput" placeholder="ابحث عن وحدات الحماية المدنية ...">
-        <button id="searchBtn"><i class="fas fa-search"></i> بحث</button>
+        <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="ابحث عن وحدات الحماية المدنية ...">
+        </div>
     </div>
 
-    <style>
 
-
-                .search-container {
-            display: flex;
-            gap: 10px;
-            margin: 20px auto;
-            max-width: 800px;
-            background: white;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        #searchInput {
-            flex: 1;
-            padding: 12px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-family: 'Cairo', sans-serif;
-            transition: 0.3s;
-        }
-
-        #searchInput:focus {
-            border-color: var(--civil-color);
-            outline: none;
-        }
-
-        #searchBtn {
-            background: var(--civil-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 0 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.3s;
-        }
-
-        #searchBtn:hover {
-            background: #095707;
-            transform: translateY(-2px);
-        }
-
-
-        .no-results {
-            text-align: center;
-            padding: 40px 20px;
-            background: #2f8148;
-            border-radius: 12px;
-            color: #666;
-            font-size: 1.1rem;
-        }
-
-        .no-results i {
-            font-size: 3rem;
-            color: #ff9800;
-            margin-bottom: 15px;
-        }
-
-        .google-fallback-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: #4285f4;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            margin-top: 10px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .google-fallback-link:hover {
-            background: #3367d6;
-            transform: translateY(-2px);
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 40px 20px;
-            background: #f9f9f9;
-            border-radius: 12px;
-            color: #666;
-            font-size: 1.1rem;
-        }
-
-        .no-results i {
-            font-size: 3rem;
-            color: #ff9800;
-            margin-bottom: 15px;
-        }
-
-        .google-fallback-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: #4285f4;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            margin-top: 10px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .google-fallback-link:hover {
-            background: #3367d6;
-            transform: translateY(-2px);
-        }
-    </style>
 
 
     <div class="container">
@@ -594,6 +115,9 @@
                         <li><a href="gendarmerie.html"><i class="fas fa-star"></i> الدرك الوطني</a></li>
                         <li><a href="protectioncivil.html"><i class="fas fa-fire-extinguisher"></i> الحماية
                                 المدنية</a></li>
+                        <li><a href="depannage.html"><i class="fas fa-truck-pickup"></i>خدمات الجر والرأب للسيارات
+                                والشاحنات</a></li>
+
                     </ul>
                 </div>
 
@@ -601,11 +125,12 @@
                 <div class="footer-col">
                     <h4><i class="fas fa-heartbeat"></i> خدمات صحية</h4>
                     <ul>
-                    <ul>
-                        <li><a href="doctors.html"><i class="fas fa-user-md"></i>أطباء مختلف التخصصات</a></li>
-                        <li><a href="laboratories.html"><i class="fas fa-vials"></i> مخابر التحاليل البيولوجية</a></li>
-                        <li><a href="pharmacies.html"><i class="fas fa-capsules"></i> الصيدليات</a></li>
-                    </ul>
+                        <ul>
+                            <li><a href="doctors.html"><i class="fas fa-user-md"></i>أطباء مختلف التخصصات</a></li>
+                            <li><a href="laboratories.html"><i class="fas fa-vials"></i> مخابر التحاليل البيولوجية</a>
+                            </li>
+                            <li><a href="pharmacies.html"><i class="fas fa-capsules"></i> الصيدليات</a></li>
+                        </ul>
                     </ul>
                 </div>
 
@@ -618,6 +143,8 @@
                         <li><a href="privacy.html"><i class="fas fa-user-shield"></i> سياسة الخصوصية</a>
                         </li>
                         <li><a href="guide.html"><i class="fas fa-book"></i> الإرشادات</a></li>
+                        <li><a href="subscription.html"><i class="fas fa-id-card"></i>الإشتراك في خدمات النجدة</a></li>
+
                     </ul>
                 </div>
 
@@ -633,9 +160,11 @@
         <button id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
     </footer>
 
-
     <!-- إضافة رابط ملف البيانات قبل الـ script -->
     <script src="../script/units-data.js"></script>
+
+    <!--  القائمة الجانبية  script -->
+    <script src="script/SidebarAnimation.js"></script>
 
     <script>
 
@@ -791,6 +320,32 @@
             }
         }
 
+        document.getElementById("searchInput").addEventListener("keyup", function (e) {
+            if (e.key === "Enter") {
+                performSearch(unitsData); // ضع اسم دالة البحث الخاصة بك هنا
+            }
+
+            const searchInput = document.getElementById("searchInput");
+
+            searchInput.addEventListener("keyup", function (e) {
+
+                const value = this.value.trim();
+
+                // إذا تم مسح البحث بالكامل
+                if (value === "") {
+                    displayUnits(unitsData);
+                    // استبدل displayLaboratories بدالة عرض البيانات الأصلية عندك
+                    return;
+                }
+
+                // تنفيذ البحث عند الضغط على Enter
+                if (e.key === "Enter") {
+                    performSearch(unitsData);
+                }
+            });
+
+        });
+
         // أحداث البحث
         searchBtn.addEventListener('click', performSearch);
         searchInput.addEventListener('keypress', (e) => {
@@ -824,6 +379,8 @@
         }
 
     </script>
+
+
 
 </body>
 
