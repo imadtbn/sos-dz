@@ -41,123 +41,125 @@
                 .then(() => console.log("Service Worker Registered"));
         }
     </script>
-<style>
-/* ===== Emergency Numbers Section ===== */
 
-.emergency-numbers {
-    padding: 20px 15px;
-}
+    <style>
+        /* ===== Emergency Numbers Section ===== */
 
-.section-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
+        .emergency-numbers {
+            padding: 20px 15px;
+        }
 
-.section-header h3 {
-    font-size: 1.2rem;
-    margin: 0;
-}
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
 
-.section-header i {
-    font-size: 1.4rem;
-}
+        .section-header h3 {
+            font-size: 1.2rem;
+            margin: 0;
+        }
 
-/* شبكة مرنة بالكامل */
-.numbers-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 14px;
-}
+        .section-header i {
+            font-size: 1.4rem;
+        }
 
-/* البطاقة */
-.number-card {
-    background: #ffffff;
-    border-radius: 14px;
-    padding: 14px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+        /* شبكة مرنة بالكامل */
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 14px;
+        }
 
-.number-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-}
+        /* البطاقة */
+        .number-card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 14px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-/* عنوان البطاقة */
-.number-card h4 {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.95rem;
-    margin-bottom: 12px;
-    line-height: 1.3;
-}
+        .number-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
 
-.number-card h4 img {
-    border-radius: 6px;
-}
+        /* عنوان البطاقة */
+        .number-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
 
-/* رابط الاتصال */
-.call-link-Emergency,
-.messenger-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    text-decoration: none;
-    background: #e63946;
-    color: #fff;
-    padding: 10px;
-    border-radius: 10px;
-    font-weight: bold;
-    font-size: 0.95rem;
-    transition: background 0.2s ease;
-    width: 100%;
-}
+        .number-card h4 img {
+            border-radius: 6px;
+        }
 
-.call-link-Emergency:hover {
-    background: #c1121f;
-}
+        /* رابط الاتصال */
+        .call-link-Emergency,
+        .messenger-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            background: #e63946;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: background 0.2s ease;
+            width: 100%;
+        }
 
-.messenger-link {
-    background: #1877f2;
-}
+        .call-link-Emergency:hover {
+            background: #c1121f;
+        }
 
-.messenger-link:hover {
-    background: #0f5ed7;
-}
+        .messenger-link {
+            background: #1877f2;
+        }
 
-/* تحسين الهواتف الصغيرة جداً */
-@media (max-width: 480px) {
+        .messenger-link:hover {
+            background: #0f5ed7;
+        }
 
-    .numbers-grid {
-        grid-template-columns: 1fr;
-    }
+        /* تحسين الهواتف الصغيرة جداً */
+        @media (max-width: 480px) {
 
-    .number-card {
-        padding: 16px;
-    }
+            .numbers-grid {
+                grid-template-columns: 1fr;
+            }
 
-    .call-link-Emergency,
-    .messenger-link {
-        font-size: 1rem;
-        padding: 12px;
-    }
+            .number-card {
+                padding: 16px;
+            }
 
-    .number-card h4 {
-        font-size: 1rem;
-    }
-}
-</style>
+            .call-link-Emergency,
+            .messenger-link {
+                font-size: 1rem;
+                padding: 12px;
+            }
+
+            .number-card h4 {
+                font-size: 1rem;
+            }
+        }
+    </style>
 
 </head>
 
 <body>
+
     <!-- Header -->
     <header>
         <div class="container header-content">
@@ -179,15 +181,15 @@
 
                 <a href="" class="active">الرئيسية</a>
                 <a href="pages/pharmacies.html">صيدليات</a>
-                <a href="pages/doctors.html">أطباء</a>
+                <a href="pages/police.html">الشرطة</a>
                 <a href="pages/laboratories.html">تحاليل طبية</a>
+                <a href="pages/gendarmerie.html">الدرك الوطني</a>
                 <a href="pages/depannage.html">جر السيارات</a>
                 <a href="pages/about.html">عن الموقع</a>
             </nav>
 
         </div>
     </header>
-
 
     <!-- Hero Section -->
     <section class="hero">
@@ -212,14 +214,6 @@
                     <i class="fas fa-id-card"></i>
                     إشتراك في الخدمة
                 </a>
-
-
-                <!--                 
-                <button id="emergencyCall" class="btn btn-warning">
-                    <i class="fas fa-phone"></i>
-                    اتصال طوارئ
-                </button>
-                 -->
             </div>
 
             <div id="locationStatus" style="margin-top: 15px; color: #ffdddd; font-weight: 700;"></div>
@@ -423,7 +417,7 @@
                             </div>
                             <h3>وحدات الحماية المدنية</h3>
                             <p>
-                                <a href="tel:121" class="call-link-Emergency">
+                                <a href="tel:1021" class="call-link-Emergency">
                                     <span class="phone-number-Emergency">1021</span>
                                     <i class="fas fa-phone"></i>
                                 </a>
@@ -798,7 +792,6 @@
 
     </div>
 
-
     <!-- JavaScript -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
@@ -819,6 +812,10 @@
     <script>
         let userLat = null;
         let userLon = null;
+
+        const LOCATION_STORAGE_KEY = "najda_user_location";
+        const LOCATION_EXPIRY_MINUTES = 20;
+        const LOCATION_EXPIRY_MS = LOCATION_EXPIRY_MINUTES * 60 * 1000;
 
         // تهيئة الخريطة
         let map = L.map('map').setView([36.7525, 3.0418], 7);
@@ -988,7 +985,9 @@
             services.laboratories.forEach((laboratory, index) => {
                 const item = document.createElement('div');
                 item.className = 'service-item' + (index === 0 ? ' nearest' : '');
-                item.innerHTML = `<span>${laboratory.name}</span><span class="distance">${laboratory.distance.toFixed(1)} كم</span>`;
+                item.innerHTML = `
+                <span>${laboratory.name}</span>
+                <span class="distance">${laboratory.distance.toFixed(1)} كم</span>`;
                 item.addEventListener('click', () => showRouteToService(laboratory));
                 laboratoriesList.appendChild(item);
             });
@@ -1194,11 +1193,6 @@
         // عرض جميع الخدمات
         document.getElementById('showAllServices').addEventListener('click', () => {
 
-            if (!userLocation) {
-                alert('الرجاء تحديد موقعك أولاً');
-                return;
-            }
-
 
             const allServices = {};
             for (const type in serviceLocations) {
@@ -1221,8 +1215,9 @@
 
         // عرض المسار
         function showRouteToService(service) {
+            
             if (!userLocation) {
-                alert('الرجاء تحديد موقعك أولاً');
+                alert('الرجاء تحديد موقعك أولا للحصول على معلومات دقيقة');
                 return;
             }
 
