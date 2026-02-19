@@ -1,0 +1,21 @@
+{
+  "name": "النجدة والطوارئ في الجزائر",
+  "short_name": "النجدة Dz",
+  "start_url": "https://imadtbn.github.io/najda-dz/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1d3557",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icons/najda_icon_3.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/najda_icon_3.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
