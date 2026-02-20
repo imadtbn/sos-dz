@@ -40,16 +40,25 @@
         <div class="container header-content">
             <div class="logo">
                 <img src="../icons/najda_icon_3.png" alt="شعار النجدة Dz" width="50" height="50" loading="lazy">
-                <h1> النجدة والطوارئ في الجزائر</h1>
+                <h1> عن الموقع</h1>
             </div>
-            <div class="nav-links">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="nav-overlay" id="navOverlay"></div>
+
+            <nav class="nav-links" id="navLinks">
+                <button class="close-menu" id="closeMenu">
+                    <i class="fas fa-times"></i>
+                </button>
                 <a href="../index.html">الرئيسية</a>
                 <a href="about.html" class="active">عن الموقع</a>
-                <a href="contact.html" >اتصل بنا</a>
+                <a href="contact.html"  >اتصل بنا</a>
                 <a href="privacy.html">سياسة الخصوصية</a>
-                <a href="guide.html">إرشادات السلامة</a>
+                <a href="guide.html" >إرشادات السلامة</a>
                 <a href="subscription.html">إشتراك </a>
-            </div>
+            </nav>
         </div>
     </header>
 
@@ -222,9 +231,7 @@
                         <li><a href="gendarmerie.html"><i class="fas fa-star"></i> الدرك الوطني</a></li>
                         <li><a href="protectioncivil.html"><i class="fas fa-fire-extinguisher"></i> الحماية
                                 المدنية</a></li>
-                        <li><a href="depannage.html"><i class="fas fa-truck-pickup"></i>خدمات الجر والرأب للسيارات
-                                والشاحنات</a></li>
-
+                        <li><a href="depannage.html"><i class="fas fa-truck-pickup"></i> جر ورأب السيارات</a></li>
                     </ul>
                 </div>
 
@@ -270,7 +277,8 @@
 
     <!-- JavaScript -->
 
-    <script src="../javascript/java-btn-pst.js"></script>
+  <!--  القائمة الجانبية  script -->
+  <script src="../script/SidebarAnimation.js"></script>
 
     <script>
         // Floating menu toggle
