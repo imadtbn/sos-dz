@@ -25,6 +25,11 @@
             align-items: center;
         }
 
+        .menu-toggle {
+            margin-right: auto;
+            color: white;
+        }
+
         .nav-links {
             display: flex;
             gap: 20px;

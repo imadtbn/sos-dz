@@ -776,8 +776,10 @@
         @media (max-width: 992px) {
             .header-content {
                 flex-direction: column;
-                gap: 15px;
+                gap: 10px;
             }
+
+            
 
             .hero h2 {
                 font-size: 1.8rem;
