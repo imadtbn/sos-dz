@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="style/css-main.css">
     <link rel="stylesheet" href="style/SidebarAnimation.css">
 
-<meta name="google-site-verification" content="f5Xi4oFx0v5dN6iPZd9qCw-7vnc3vIbAeYF9jr4vwVM" />
+    <meta name="google-site-verification" content="f5Xi4oFx0v5dN6iPZd9qCw-7vnc3vIbAeYF9jr4vwVM" />
 
 
     <script>
@@ -159,8 +159,8 @@
         }
     </style>
 
-<!-- Structured Data -->
-<script type="application/ld+json">
+    <!-- Structured Data -->
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
@@ -309,13 +309,13 @@
             <div class="logo">
                 <img src="icons/najda_icon_3.png" alt="شعار النجدة Dz" width="50" height="50" loading="lazy">
                 <h1>النجدة Dz</h1>
- <button class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
-            </button>
-
+            
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
             </div>
 
-           
             <div class="nav-overlay" id="navOverlay"></div>
 
             <nav class="nav-links" id="navLinks">
@@ -331,7 +331,6 @@
                 <a href="pages/depannage.html">جر السيارات</a>
                 <a href="pages/about.html">عن الموقع</a>
             </nav>
-
         </div>
     </header>
 
@@ -1423,100 +1422,100 @@
 
         });
 
-     
+
     </script>
 
-    
-<script>
-    /*
-      يتوقع أن تكون المصفوفة بالشكل التالي:
-      {
-        name: "",
-        wilaya: "",
-        baladia: "",
-        phone: "",
-        lat: 36.75,
-        lon: 3.05
-      }
-    */
 
-    /* === خريطة ربط نوع الصفحة بنوع Schema === */
-    const schemaTypes = {
-        hospitalsData: "Hospital",
-        policeData: "PoliceStation",
-        gendarmerieData: "PoliceStation",
-        protectioncivilData: "FireStation",
-        pharmaciesData: "Pharmacy",
-        laboratoriesData: "MedicalLaboratory",
-        doctorsData: "Physician",
-        depannageData: "AutoRepair"
-    };
+    <script>
+        /*
+          يتوقع أن تكون المصفوفة بالشكل التالي:
+          {
+            name: "",
+            wilaya: "",
+            baladia: "",
+            phone: "",
+            lat: 36.75,
+            lon: 3.05
+          }
+        */
 
-    /* === حدد اسم المصفوفة الخاصة بالصفحة الحالية === */
-    // مثال:
-    // const currentData = hospitalsData;
-    const currentData = typeof hospitalsData !== "undefined" ? hospitalsData :
-        typeof policeData !== "undefined" ? policeData :
-            typeof gendarmerieData !== "undefined" ? gendarmerieData :
-                typeof protectioncivilData !== "undefined" ? protectioncivilData :
-                    typeof pharmaciesData !== "undefined" ? pharmaciesData :
-                        typeof laboratoriesData !== "undefined" ? laboratoriesData :
-                            typeof doctorsData !== "undefined" ? doctorsData :
-                                typeof depannageData !== "undefined" ? depannageData : [];
-
-    /* === معرفة نوع الـ Schema === */
-    const currentType = Object.keys(schemaTypes).find(key => typeof window[key] !== "undefined");
-    const schemaType = schemaTypes[currentType] || "LocalBusiness";
-
-    /* === بناء JSON-LD === */
-    function generateStructuredData(dataArray, type) {
-
-        const itemList = dataArray.map((item, index) => ({
-            "@type": type,
-            "position": index + 1,
-            "name": item.name,
-            "telephone": item.phone ? "+213" + item.phone.replace(/\D/g, "") : "",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": item.baladia || "",
-                "addressRegion": item.wilaya || "",
-                "addressCountry": "DZ"
-            },
-            "geo": item.lat && item.lon ? {
-                "@type": "GeoCoordinates",
-                "latitude": item.lat,
-                "longitude": item.lon
-            } : undefined,
-            "hasMap": item.lat && item.lon
-                ? `https://www.google.com/maps?q=${item.lat},${item.lon}`
-                : undefined
-        }));
-
-        return {
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            "name": document.title,
-            "itemListElement": itemList
+        /* === خريطة ربط نوع الصفحة بنوع Schema === */
+        const schemaTypes = {
+            hospitalsData: "Hospital",
+            policeData: "PoliceStation",
+            gendarmerieData: "PoliceStation",
+            protectioncivilData: "FireStation",
+            pharmaciesData: "Pharmacy",
+            laboratoriesData: "MedicalLaboratory",
+            doctorsData: "Physician",
+            depannageData: "AutoRepair"
         };
-    }
 
-    /* === إدراج السكربت في الصفحة === */
-    if (currentData.length > 0) {
-        const structuredData = generateStructuredData(currentData, schemaType);
+        /* === حدد اسم المصفوفة الخاصة بالصفحة الحالية === */
+        // مثال:
+        // const currentData = hospitalsData;
+        const currentData = typeof hospitalsData !== "undefined" ? hospitalsData :
+            typeof policeData !== "undefined" ? policeData :
+                typeof gendarmerieData !== "undefined" ? gendarmerieData :
+                    typeof protectioncivilData !== "undefined" ? protectioncivilData :
+                        typeof pharmaciesData !== "undefined" ? pharmaciesData :
+                            typeof laboratoriesData !== "undefined" ? laboratoriesData :
+                                typeof doctorsData !== "undefined" ? doctorsData :
+                                    typeof depannageData !== "undefined" ? depannageData : [];
 
-        const script = document.createElement("script");
-        script.type = "application/ld+json";
-        script.text = JSON.stringify(structuredData, null, 2);
-        document.head.appendChild(script);
-    }
+        /* === معرفة نوع الـ Schema === */
+        const currentType = Object.keys(schemaTypes).find(key => typeof window[key] !== "undefined");
+        const schemaType = schemaTypes[currentType] || "LocalBusiness";
 
-    /*ظهور أقوى في Google Maps*/
-    
-    "openingHours": "Mo-Su 00:00-23:59",
-        "areaServed": "DZ",
-            "url": window.location.href
+        /* === بناء JSON-LD === */
+        function generateStructuredData(dataArray, type) {
 
-</script>
+            const itemList = dataArray.map((item, index) => ({
+                "@type": type,
+                "position": index + 1,
+                "name": item.name,
+                "telephone": item.phone ? "+213" + item.phone.replace(/\D/g, "") : "",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": item.baladia || "",
+                    "addressRegion": item.wilaya || "",
+                    "addressCountry": "DZ"
+                },
+                "geo": item.lat && item.lon ? {
+                    "@type": "GeoCoordinates",
+                    "latitude": item.lat,
+                    "longitude": item.lon
+                } : undefined,
+                "hasMap": item.lat && item.lon
+                    ? `https://www.google.com/maps?q=${item.lat},${item.lon}`
+                    : undefined
+            }));
+
+            return {
+                "@context": "https://schema.org",
+                "@type": "ItemList",
+                "name": document.title,
+                "itemListElement": itemList
+            };
+        }
+
+        /* === إدراج السكربت في الصفحة === */
+        if (currentData.length > 0) {
+            const structuredData = generateStructuredData(currentData, schemaType);
+
+            const script = document.createElement("script");
+            script.type = "application/ld+json";
+            script.text = JSON.stringify(structuredData, null, 2);
+            document.head.appendChild(script);
+        }
+
+        /*ظهور أقوى في Google Maps*/
+
+        "openingHours": "Mo-Su 00:00-23:59",
+            "areaServed": "DZ",
+                "url": window.location.href
+
+    </script>
 
 </body>
 
