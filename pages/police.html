@@ -24,10 +24,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../icons/najda_icon_3.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../icons/najda_icon_3.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../icons/najda_icon_3.png">
-        <link rel="stylesheet" href="../style/polices.css">
-            <link rel="stylesheet" href="../style/SidebarAnimation.css">
+    <link rel="stylesheet" href="../style/polices.css">
+    <link rel="stylesheet" href="../style/SidebarAnimation.css">
 
-            <script type="application/ld+json">
+    <script type="application/ld+json">
                 {
                   "@context": "https://schema.org",
                   "@type": "ItemList",
@@ -64,11 +64,14 @@
             <div class="logo">
                 <img src="../icons/dgsn.png" alt="شعار الشرطة Dz" width="50" height="50" loading="lazy">
                 <h1>مراكز الشرطة</h1>
+
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+
             </div>
- 
-                        <button class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
-            </button>
+
+
 
             <div class="nav-overlay" id="navOverlay"></div>
 
@@ -141,7 +144,7 @@
                         <li><a href="gendarmerie.html"><i class="fas fa-star"></i> الدرك الوطني</a></li>
                         <li><a href="protectioncivil.html"><i class="fas fa-fire-extinguisher"></i> الحماية
                                 المدنية</a></li>
-                                <li><a href="depannage.html"><i class="fas fa-truck-pickup"></i> جر ورأب السيارات</a></li>
+                        <li><a href="depannage.html"><i class="fas fa-truck-pickup"></i> جر ورأب السيارات</a></li>
 
                     </ul>
                 </div>
@@ -188,7 +191,10 @@
     <!-- إضافة رابط ملف البيانات قبل الـ script -->
     <script src="../script/police-data.js"></script>
 
+    <!--  القائمة الجانبية  script -->
+    <script src="../script/SidebarAnimation.js"></script>
     <script>
+        // استبدال كل السكربت الموجود بهذا الكود المنظم
 
         let userLat = null, userLon = null;
 
@@ -201,116 +207,11 @@
         if (savedLat && savedLon && savedTime && (Date.now() - savedTime < ONE_HOUR)) {
             userLat = parseFloat(savedLat);
             userLon = parseFloat(savedLon);
-            document.getElementById('locationStatus').innerHTML =
-                '<i class="fas fa-check-circle"></i> تم استخدام موقعك المخزن';
-            displayPolice();
+            document.getElementById('locationStatus').innerHTML = '<i class="fas fa-check-circle"></i> تم استخدام موقعك المخزن';
         } else {
-            displayPolice(); // عرض بدون ترتيب
+            // لا يوجد موقع مخزن أو منتهي الصلاحية
+            document.getElementById('locationStatus').innerHTML = '<i class="fas fa-info-circle"></i> يُرجى تحديث الموقع لعرض المراكز الأقرب';
         }
-
-
-        // استخدام window.policeData مباشرة
-        function displayPolice() {
-            const container = document.getElementById('policeData');
-            if (!userLat || !userLon) {
-                let html = '';
-                window.policeData.forEach(p => {
-                    html += renderPoliceCard(p, null);
-                });
-                container.innerHTML = html || '<p>لا توجد بيانات</p>';
-                return;
-            }
-
-            const withDistance = window.policeData.map(p => {
-                const dist = calculateDistance(userLat, userLon, p.lat, p.lon);
-                return { ...p, distance: dist };
-            }).sort((a, b) => a.distance - b.distance);
-
-            let html = '';
-            withDistance.forEach(p => {
-                html += renderPoliceCard(p, p.distance.toFixed(1));
-            });
-            container.innerHTML = html;
-        }
-
-        // عناصر البحث
-        const searchInput = document.getElementById('searchInput');
-        const searchBtn = document.getElementById('searchBtn');
-
-        // دالة البحث
-        function performSearch() {
-            const query = searchInput.value.trim().toLowerCase();
-            if (query === '') {
-                // إعادة عرض جميع البيانات (بدون موقع)
-                displayPolice(); // هذه الدالة تستخدم policeData وترتب حسب المسافة إن وجدت
-                return;
-            }
-
-            // تصفية البيانات (policeData هي المصفوفة العامة)
-            const filtered = policeData.filter(item => {
-                return item.name.toLowerCase().includes(query) ||
-                    (item.wilaya && item.wilaya.toLowerCase().includes(query)) ||
-                    (item.baladia && item.baladia.toLowerCase().includes(query)) ||
-                    (item.phone && item.phone.includes(query));
-            });
-
-            // عرض النتائج
-            const container = document.getElementById('policeList');
-            if (filtered.length === 0) {
-                // رسالة عدم وجود نتائج + رابط بحث Google
-                const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}+الجزائر+مركز+شرطة`;
-                container.innerHTML = `
-            <div class="no-results">
-                <i class="fas fa-exclamation-triangle"></i>
-                <p>لم نتمكن من العثور على "${searchInput.value}" في قاعدة بياناتنا.</p>
-                <p>قد تجد النتائج التي تبحث عنها عبر 
-                    <a href="${googleSearchUrl}" target="_blank" class="google-fallback-link">
-                        <i class="fab fa-google"></i> بحث Google
-                    </a>
-                </p>
-            </div>
-        `;
-            } else {
-                // عرض النتائج (بدون مسافات، لأننا لا نعرف موقع المستخدم)
-                let html = '';
-                filtered.forEach(p => {
-                    html += renderPoliceCard(p, null); // نستخدم دالة العرض الموجودة
-                });
-                container.innerHTML = html;
-            }
-        }
-
-        document.getElementById("searchInput").addEventListener("keyup", function (e) {
-            if (e.key === "Enter") {
-                performSearch(policeData); // ضع اسم دالة البحث الخاصة بك هنا
-            }
-
-            const searchInput = document.getElementById("searchInput");
-
-            searchInput.addEventListener("keyup", function (e) {
-
-                const value = this.value.trim();
-
-                // إذا تم مسح البحث بالكامل
-                if (value === "") {
-                    displayPolice(policeData);
-                    // استبدل displayLaboratories بدالة عرض البيانات الأصلية عندك
-                    return;
-                }
-
-                // تنفيذ البحث عند الضغط على Enter
-                if (e.key === "Enter") {
-                    performSearch(policeData);
-                }
-            });
-
-        });
-
-        // أحداث البحث
-        searchBtn.addEventListener('click', performSearch);
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') performSearch();
-        });
 
         // دالة حساب المسافة (هافرسين)
         function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -324,39 +225,10 @@
             return R * c;
         }
 
-        // عرض مراكز الشرطة مرتبة حسب المسافة
-        function displayPolice() {
-            const container = document.getElementById('policeList');
-            if (!userLat || !userLon) {
-                // إذا لم يحدد الموقع، عرض المراكز بدون ترتيب
-                let html = '';
-                policeData.forEach(p => {
-                    html += renderPoliceCard(p, null);
-                });
-                container.innerHTML = html || '<p>لا توجد بيانات</p>';
-                return;
-            }
-
-            // حساب المسافة لكل مركز وترتيبها
-            const withDistance = policeData.map(p => {
-                const dist = calculateDistance(userLat, userLon, p.lat, p.lon);
-                return { ...p, distance: dist };
-            }).sort((a, b) => a.distance - b.distance);
-
-            let html = '';
-            withDistance.forEach(p => {
-                html += renderPoliceCard(p, p.distance.toFixed(1));
-            });
-            container.innerHTML = html;
-        }
-
         // دالة عرض بطاقة الشرطة
-
         function renderPoliceCard(p, distance) {
             const distText = distance ? `<div class="distance-badge"><i class="fas fa-location-dot"></i> ${distance} كم</div>` : '';
             const googleMapsLink = `https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lon}`;
-
-            // تنظيف رقم الهاتف من الرموز غير الرقمية (الشرطات، المسافات) مع الاحتفاظ بـ +
             const cleanPhone = p.phone ? p.phone.replace(/[^\d+]/g, '') : '';
 
             return `
@@ -374,11 +246,39 @@
     `;
         }
 
-        // تحديد الموقع الجغرافي
+        // دالة عرض البيانات الرئيسية (مرتبة حسب المسافة إن وجدت)
+        function displayPolice() {
+            const container = document.getElementById('policeList');
+            if (!container) return;
+
+            if (!userLat || !userLon) {
+                // عرض بدون ترتيب
+                let html = '';
+                policeData.forEach(p => {
+                    html += renderPoliceCard(p, null);
+                });
+                container.innerHTML = html || '<p class="no-data">لا توجد بيانات</p>';
+                return;
+            }
+
+            // حساب المسافة والترتيب
+            const withDistance = policeData.map(p => {
+                const dist = calculateDistance(userLat, userLon, p.lat, p.lon);
+                return { ...p, distance: dist };
+            }).sort((a, b) => a.distance - b.distance);
+
+            let html = '';
+            withDistance.forEach(p => {
+                html += renderPoliceCard(p, p.distance.toFixed(1));
+            });
+            container.innerHTML = html;
+        }
+
+        // تحديث الموقع الجغرافي
         document.getElementById('getLocation').addEventListener('click', function () {
             const status = document.getElementById('locationStatus');
             if (!navigator.geolocation) {
-                status.innerText = 'المتصفح لا يدعم تحديد الموقع';
+                status.innerHTML = '<i class="fas fa-exclamation-triangle"></i> المتصفح لا يدعم تحديد الموقع';
                 return;
             }
             status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تحديد الموقع...';
@@ -386,23 +286,78 @@
                 (position) => {
                     userLat = position.coords.latitude;
                     userLon = position.coords.longitude;
-                    status.innerHTML = `<i class="fas fa-check-circle"></i> تم تحديد موقعك بنجاح`;
-                    displayPolice();
-                },
 
+                    // حفظ في localStorage مع وقت التخزين
+                    localStorage.setItem('userLat', userLat);
+                    localStorage.setItem('userLon', userLon);
+                    localStorage.setItem('locationTimestamp', Date.now());
+
+                    status.innerHTML = `<i class="fas fa-check-circle"></i> تم تحديد موقعك بنجاح`;
+                    displayPolice(); // إعادة العرض مع الترتيب
+                },
                 (error) => {
-                    status.innerText = 'فشل تحديد الموقع: ' + error.message;
+                    status.innerHTML = `<i class="fas fa-exclamation-triangle"></i> فشل تحديد الموقع: ${error.message}`;
                     displayPolice(); // عرض بدون ترتيب
                 }
             );
         });
 
-        // عرض أولي بدون موقع
-        displayPolice();
-    </script>
+        // وظيفة البحث
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const container = document.getElementById('policeList');
 
-        <!--  القائمة الجانبية  script -->
-    <script src="../script/SidebarAnimation.js"></script>
+            if (query === '') {
+                displayPolice(); // إعادة العرض العادي
+                return;
+            }
+
+            const filtered = policeData.filter(item => {
+                return item.name.toLowerCase().includes(query) ||
+                    (item.wilaya && item.wilaya.toLowerCase().includes(query)) ||
+                    (item.baladia && item.baladia.toLowerCase().includes(query)) ||
+                    (item.phone && item.phone.includes(query));
+            });
+
+            if (filtered.length === 0) {
+                const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}+الجزائر+مركز+شرطة`;
+                container.innerHTML = `
+            <div class="no-results">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>لم نتمكن من العثور على "${query}" في قاعدة بياناتنا.</p>
+                <p>قد تجد النتائج التي تبحث عنها عبر 
+                    <a href="${googleSearchUrl}" target="_blank" class="google-fallback-link">
+                        <i class="fab fa-google"></i> بحث Google
+                    </a>
+                </p>
+            </div>
+        `;
+            } else {
+                let html = '';
+                filtered.forEach(p => {
+                    html += renderPoliceCard(p, null);
+                });
+                container.innerHTML = html;
+            }
+        }
+
+        // مستمعات البحث
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function () {
+            if (this.value.trim() === '') {
+                displayPolice(); // رجوع للعرض الكامل عند مسح البحث
+            }
+        });
+        searchInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // عرض أولي
+        displayPolice();
+
+    </script>
 
 </body>
 

@@ -26,18 +26,18 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../icons/najda_icon_3.png">
 
     <link rel="stylesheet" href="../style/pharmacies.css">
-        <link rel="stylesheet" href="../style/SidebarAnimation.css">
+    <link rel="stylesheet" href="../style/SidebarAnimation.css">
 
 
-<!-- لون شريط المتصفح -->
-<meta name="theme-color" content="#1d3557">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- لون شريط المتصفح -->
+    <meta name="theme-color" content="#1d3557">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#1d3557">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1f33">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#1d3557">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1f33">
 
 
-<script type="application/ld+json">
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ItemList",
@@ -70,15 +70,19 @@
 </head>
 
 <body>
+    
     <header>
         <div class="container header-content">
             <div class="logo">
                 <img src="../icons/najda_icon_3.png" alt="شعار النجدة Dz" width="50" height="50" loading="lazy">
                 <h1>صيدليات</h1>
+
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+
             </div>
-                        <button class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
-            </button>
+
 
             <div class="nav-overlay" id="navOverlay"></div>
 
@@ -89,7 +93,7 @@
 
                 <a href="../index.html">الرئيسية</a>
                 <a href="hospitals.html">مستشفيات</a>
-                <a href="pharmacies.html"  class="active">صيدليات</a>
+                <a href="pharmacies.html" class="active">صيدليات</a>
                 <a href="doctors.html">أطباء</a>
                 <a href="laboratories.html">مخابر التحاليل البيولوجية</a>
                 <a href="subscription.html">الإشتراك</a>
@@ -156,7 +160,7 @@
                         <li><a href="gendarmerie.html"><i class="fas fa-star"></i> الدرك الوطني</a></li>
                         <li><a href="protectioncivil.html"><i class="fas fa-fire-extinguisher"></i> الحماية
                                 المدنية</a></li>
-                                <li><a href="depannage.html"><i class="fas fa-truck-pickup"></i> جر ورأب السيارات</a></li>
+                        <li><a href="depannage.html"><i class="fas fa-truck-pickup"></i> جر ورأب السيارات</a></li>
 
                     </ul>
                 </div>
@@ -413,7 +417,7 @@
         }
     </script>
 
-        <!--  القائمة الجانبية  script -->
+    <!--  القائمة الجانبية  script -->
     <script src="../script/SidebarAnimation.js"></script>
 
 </body>
