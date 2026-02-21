@@ -252,3 +252,9 @@
 .service-card.military .service-icon { color: var(--military-color); }
 .service-card.civil-defense .service-icon { color: var(--civil-defense-color); }
 .service-card.doctor .service-icon { color: var(--doctor-color); }
+
+service-card.depannage .service-icon { color: var(--depannage-color); }
+
+
+
+ 
